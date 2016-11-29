@@ -14,11 +14,6 @@ if($_POST['colors'] != ''){
 	header("HTTP/1.0 200 OK");
 }
 
-if($_POST['asdf'] != ''){
-	asdf = $_POST['colors'];
-	print(asdf);
-	header("HTTP/1.0 200 OK");
-}
 
 ?>
 <html>
@@ -58,6 +53,11 @@ if($_POST['asdf'] != ''){
 	</script>
 	
 	<center><p>Select a Color: <input type='text' id="minipicker"/></p></center>
+	
+	<form action="welcome.php" method="post">
+	Name: <input type="text" name="fname" />
+	Age: <input type="text" name="age" />
+	<input type="submit" />
 <script>
 	
 $("#minipicker").spectrum({
