@@ -19,9 +19,14 @@ if($_POST['colors'] != ''){
 <head>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	
-<script src='spectrum.js'></script>
-<link rel='stylesheet' href='spectrum.css' />
-	</head>
+	<script src='spectrum.js'></script>
+	<link rel='stylesheet' href='spectrum.css' />
+	<style>
+		body{
+		background-color: #e74c3c;
+		}
+	</style>
+</head>
 <body>
 	<script>
 
@@ -38,8 +43,9 @@ if($_POST['colors'] != ''){
 }
 	</script>
 	
-	<center>Select A color for the lights-> <input type='text' id="minipicker"/></center>
+	<center><p>Select a color for the lights-> <input type='text' id="minipicker"/></p></center>
 <script>
+	
 $("#minipicker").spectrum({
     color: "#FFFFFF",
     showInput: true,
@@ -68,7 +74,7 @@ $("#minipicker").spectrum({
 			  	url: 'index.php',
 			  	data: {'colors':getRGB($('#minipicker').val()).join(',')},
 			  	success: function(data) {
-			    	//alert("changed, but you wont know unless technophilia is broadcasting live!");
+			    	
 			  	}
 			}); 
     },
