@@ -14,6 +14,12 @@ if($_POST['colors'] != ''){
 	header("HTTP/1.0 200 OK");
 }
 
+if($_POST['asdf'] != ''){
+	asdf = $_POST['colors'];
+	print(asdf);
+	header("HTTP/1.0 200 OK");
+}
+
 ?>
 <html>
 <head>
