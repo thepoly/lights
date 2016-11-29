@@ -41,7 +41,7 @@ if($_POST['colors'] != ''){
 	<center>Select A color for the lights-> <input type='text' id="minipicker"/></center>
 <script>
 $("#minipicker").spectrum({
-    color: "#ECC",
+    color: "#FFFFFF",
     showInput: true,
     className: "full-spectrum",
     showInitial: true,
