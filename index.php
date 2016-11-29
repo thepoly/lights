@@ -54,10 +54,6 @@ if($_POST['colors'] != ''){
 	
 	<center><p>Select a Color: <input type='text' id="minipicker"/></p></center>
 	
-	<form action="welcome.php" method="post">
-	Name: <input type="text" name="fname" />
-	Age: <input type="text" name="age" />
-	<input type="submit" />
 <script>
 	
 $("#minipicker").spectrum({
