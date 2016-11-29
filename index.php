@@ -59,10 +59,10 @@ $("#minipicker").spectrum({
     showInput: true,
     className: "full-spectrum",
     showInitial: true,
-    showPalette: true,
-    showSelectionPalette: true,
+    showPaletteOnly: true,
+    showSelectionPalette: false,
     maxPaletteSize: 10,
-    preferredFormat: "hex",
+    preferredFormat: "rgb",
     localStorageKey: "spectrum.demo",
     move: function (color) {
         
