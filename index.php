@@ -24,7 +24,13 @@ if($_POST['colors'] != ''){
 	<style>
 		body{
 		background-color: #e74c3c;
+		color: #000000;
+		font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
 		}
+		p{
+		font-size:40px;
+		}
+		
 	</style>
 </head>
 <body>
