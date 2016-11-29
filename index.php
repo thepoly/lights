@@ -24,11 +24,12 @@ if($_POST['colors'] != ''){
 	<style>
 		body{
 		background-color: #e74c3c;
-		color: #000000;
+		
 		font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
 		}
 		p{
 		font-size:40px;
+		color: #000000;
 		}
 		
 	</style>
@@ -49,7 +50,7 @@ if($_POST['colors'] != ''){
 }
 	</script>
 	
-	<center><p>Select a color for the lights-> <input type='text' id="minipicker"/></p></center>
+	<center><p>select a color for the lights<input type='text' id="minipicker"/></p></center>
 <script>
 	
 $("#minipicker").spectrum({
