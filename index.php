@@ -51,7 +51,7 @@ if($_POST['colors'] != ''){
 }
 	</script>
 	
-	<center><p>select a color: <input type='text' id="minipicker"/></p></center>
+	<center><p>SELECT A COLOR: <input type='text' id="minipicker"/></p></center>
 <script>
 	
 $("#minipicker").spectrum({
