@@ -6,6 +6,7 @@ void setup(){
   port = new Serial(this, "COM5", 9600);  // Open the port that the Arduino board is connected to, at 9600 baud
 }
 void draw(){
+  bool changed = false;
   String[] colors = new String[3];
   String[] colorsOld = new String[3];
   colors = loadStrings("http://192.168.138.20/LED.txt"); // Insert the location of your .txt file
@@ -32,15 +33,18 @@ void draw(){
     //println(colors[n]);
     int num;
     num = parseInt(colors[n]); // change string into Int
-  
-    //println("asdf");
+    if(colors[n] != colorsOld[n]){
+      changed = true;
+    }
     
   }
-  port.write(numThing); // write as a byte over serial
-  int in = port.read();
-  print(in);
-  colorsOld = colors;
-  
+  if(changed){
+    colorsOld = colors;
+    port.write(numThing); // write as a byte over serial
+    int in = port.read();
+    changed = false;
+    print(in);
+  }
   //port.write(0xff); //write our marker
   delay(1000);
 }
