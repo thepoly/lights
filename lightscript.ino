@@ -40,6 +40,10 @@ int r;
 int g;
 int v = 0;
 int b;
+String s;
+int j;
+int k;
+int l;
 
 void setup()
 {
@@ -74,18 +78,29 @@ setConfiguration();
 
 void serialEvent(){
   int vold = 0;
-  while(v != -1){
-    vold = v;
-    v = (int)Serial.read();
-  }
-  v = vold;
+  
+  
+  s = Serial.readStringUntil(';');
+  
+  int commaIndex = s.indexOf(',');
+  //  Search for the next comma just after the first
+  int secondCommaIndex = s.indexOf(',', commaIndex+1);
+  String firstValue = s.substring(0, commaIndex);
+  String secondValue = s.substring(commaIndex+1, secondCommaIndex);
+  String thirdValue = s.substring(secondCommaIndex+1); // To the end of the string
+
+  j = firstValue.toInt();
+  k = secondValue.toInt();
+  l = thirdValue.toInt() * 0.75;
+  Serial.println(thirdValue);
+  Serial.flush();
 }
 
 void loop()
-{  
+{  /*
   switch(v){
     case 0:
-    r = 255;
+    r = 100;
     g = 255;
     b = 255;
     break;
@@ -104,8 +119,10 @@ void loop()
     g = 0;
     b = 255;
     break;
-  }
-
+  }*/
+  r = j;
+  g = k;
+  b = l;
     for(int i = 0; i < 4095/255; i += 1){
       setPWM(0,(int)(i*r));
       setPWM(1,(int)(i*r));
@@ -126,7 +143,7 @@ void loop()
       setPWM(9,i*b);
       delay(10);
     }
-    delay(1000);
+    delay(3000);
     for(int i = 4094/255; i > 1; i -=1){
       setPWM(0,i*r);
       setPWM(1,i*r);
