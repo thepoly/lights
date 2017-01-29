@@ -13,23 +13,7 @@ void draw(){
   colors = loadStrings("https://poly.rpi.edu/lights/LED.txt"); // Insert the location of your .txt file
   int numThing = 0;
   int counter = 0;
-  if(parseInt(colors[0]) > 20){
-    numThing = 1;
-    counter+=1;
-    
-  }
-  if(parseInt(colors[1]) > 20){
-    numThing = 2;
-    counter++;
-  }
-  if(parseInt(colors[2]) > 20){
-    numThing = 3;
-    counter ++;
-  }
-  if(counter == 3){
-    numThing = 0;
-  }
-    
+  
   for(int n=0;n<3;n++){
     //println(colors[n]);
     int num;
@@ -41,13 +25,18 @@ void draw(){
   }
   if(changed){
     colorsOld = colors;
-    port.write(numThing); // write as a byte over serial
+    port.write(colors[0]);
+    port.write(",");
+    port.write(colors[1]);
+    port.write(",");
+    port.write(colors[2]);
+    port.write(";");
     int in = port.read();
     changed = false;
     print(in);
   }
   //port.write(0xff); //write our marker
-  delay(1000);
+  delay(5000);
   }catch(Exception e){
   }
 }
