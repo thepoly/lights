@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from os import curdir, sep
+import io
 
 # HTTPRequestHandler class
-class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
+class Lights_RequestHandler(BaseHTTPRequestHandler):
 
   # GET
   def do_GET(self):
@@ -15,20 +17,23 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
         # Send message back to client
-        message = "Hello world!"
+        f = open('index.html');
+        #print(f.read())
+        self.wfile.write(bytes(f.read(),"utf8"));
         # Write content as utf-8 data
-        self.wfile.write(bytes(message, "utf8"))
+        #self.wfile.write(bytes(message, "utf8"))
         return
 
 def run():
   print('starting server...')
 
   # Server settings
- 
-  server_address = ('127.0.0.1', 80)
-  httpd = HTTPServer(server_address, testHTTPServer_RequestHandler)
-  print('running server...')
-  httpd.serve_forever()
-
+  try:
+      server_address = ('127.0.0.1', 80)
+      httpd = HTTPServer(server_address, Lights_RequestHandler)
+      print('running server...')
+      httpd.serve_forever()
+  except KeyboardInterrupt:
+      print("done")
 
 run()
