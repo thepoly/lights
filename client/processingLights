@@ -13,7 +13,7 @@ void draw(){
   colors = loadStrings("https://poly.rpi.edu/lights/LED.txt"); // Insert the location of your .txt file
   int numThing = 0;
   int counter = 0;
-  
+
   for(int n=0;n<3;n++){
     //println(colors[n]);
     int num;
@@ -21,10 +21,12 @@ void draw(){
     if(colors[n] != colorsOld[n]){
       changed = true;
     }
-    
+
   }
   if(changed){
     colorsOld = colors;
+    port.write("0"); // This will be changed soon to add support for several lights
+    port.write(",");
     port.write(colors[0]);
     port.write(",");
     port.write(colors[1]);

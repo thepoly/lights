@@ -56,6 +56,7 @@ void setup()
 
   // configure PWM chip
   setConfiguration();
+  //Initialize lights to "all on"
   //Red
   setPWM(0,4095);
   setPWM(1,4095);
@@ -76,23 +77,70 @@ void setup()
   setPWM(9,4095);
 }
 
+int windowOne[3] = {0,10,5};
+int windowTwo[3] = {1,11,6};
+int windowThree[3] = {2,12,7};
+int windowFour[3] = {3,13,8};
+int windowFive[3] = {4,14,9};
+
+void setWindow(int id, int rgb[3]){
+  switch(id){
+    case 0:
+      for(int i = 0; i < 3; i ++){
+        setPWM(windowOne[i],rgb[i]);
+      }
+      break;
+    case 1:
+      for(int i = 0; i < 3; i ++){
+        setPWM(windowTwo[i],rgb[i]);
+      }
+      break;
+    case 2:
+      for(int i = 0; i < 3; i ++){
+        setPWM(windowThree[i],rgb[i]);
+      }
+      break;
+    case 3:
+      for(int i = 0; i < 3; i ++){
+        setPWM(windowFour[i],rgb[i]);
+      }
+      break;
+    case 4:
+      for(int i = 0; i < 3; i ++){
+        setPWM(windowFive[i],rgb[i]);
+      }
+      break;
+    default:
+      for(int i = 0; i < 3; i ++){
+        setPWM(windowOne[i],rgb[i]);
+        setPWM(windowTwo[i],rgb[i]);
+        setPWM(windowThree[i],rgb[i]);
+        setPWM(windowFour[i],rgb[i]);
+        setPWM(windowFive[i],rgb[i]);
+      }
+
+      break;
+  }
+}
+
 void serialEvent(){
   int vold = 0;
-
-
   s = Serial.readStringUntil(';');
-
+  int whichWindow = 0;
   int commaIndex = s.indexOf(',');
   //  Search for the next comma just after the first
   int secondCommaIndex = s.indexOf(',', commaIndex+1);
+  int thirdCommaIndex = s.indexOf(',', commaIndex+1);
   String firstValue = s.substring(0, commaIndex);
   String secondValue = s.substring(commaIndex+1, secondCommaIndex);
-  String thirdValue = s.substring(secondCommaIndex+1); // To the end of the string
+  String thirdValue = s.substring(secondCommaIndex+1,thirdCommaIndex);
+  String fourthValue = s.substring(thirdCommaIndex + 1);// To the end of the string
 
-  j = firstValue.toInt();
-  k = secondValue.toInt();
-  l = thirdValue.toInt() * 0.75;
-  Serial.println(thirdValue);
+  j = secondValue.toInt();
+  k = thirdValue.toInt();
+  l = fourthValue.toInt() * 0.75;
+  whichWindow = firstValue.toInt();
+  Serial.println(whichWindow);
   Serial.flush();
 }
 
