@@ -1,7 +1,7 @@
 /* 16 Channel LED Driver Board for /The Polytechnic/.
 *
 * Copyright 2014 Ethan Spitz
-* 
+*
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation, either version 3 of the License, or
@@ -23,7 +23,7 @@
 *    # B: 6
 *    # C: 7
 *    # D: A2 //MSB
-* # 
+* #
 *
 */
 
@@ -47,15 +47,15 @@ int l;
 
 void setup()
 {
-r = 255;
-g = 255;
-b = 255;
-// configure serial and i2c communication
-Serial.begin(9600);
-Wire.begin();
+  r = 255;
+  g = 255;
+  b = 255;
+  // configure serial and i2c communication
+  Serial.begin(9600);
+  Wire.begin();
 
-// configure PWM chip
-setConfiguration();
+  // configure PWM chip
+  setConfiguration();
   //Red
   setPWM(0,4095);
   setPWM(1,4095);
@@ -64,7 +64,7 @@ setConfiguration();
   setPWM(4,4095);
   //Green
   setPWM(10,4095);
-  setPWM(11,4095); 
+  setPWM(11,4095);
   setPWM(12,4095);
   setPWM(13,4095);
   setPWM(14,4095);
@@ -78,10 +78,10 @@ setConfiguration();
 
 void serialEvent(){
   int vold = 0;
-  
-  
+
+
   s = Serial.readStringUntil(';');
-  
+
   int commaIndex = s.indexOf(',');
   //  Search for the next comma just after the first
   int secondCommaIndex = s.indexOf(',', commaIndex+1);
@@ -97,29 +97,7 @@ void serialEvent(){
 }
 
 void loop()
-{  /*
-  switch(v){
-    case 0:
-    r = 100;
-    g = 255;
-    b = 255;
-    break;
-    case 1:
-    r = 255;
-    g = 0;
-    b = 0;
-    break;
-    case 2:
-    r = 0;
-    g = 255;
-    b = 0;
-    break;
-    case 3:
-    r = 0;
-    g = 0;
-    b = 255;
-    break;
-  }*/
+{
   r = j;
   g = k;
   b = l;
@@ -131,7 +109,7 @@ void loop()
       setPWM(4,(int)(i*r));
       //Green
       setPWM(10,i*g);
-      setPWM(11,i*g); 
+      setPWM(11,i*g);
       setPWM(12,i*g);
       setPWM(13,i*g);
       setPWM(14,i*g);
@@ -152,7 +130,7 @@ void loop()
       setPWM(4,i*r);
       //Green
       setPWM(10,i*g);
-      setPWM(11,i*g); 
+      setPWM(11,i*g);
       setPWM(12,i*g);
       setPWM(13,i*g);
       setPWM(14,i*g);
@@ -163,7 +141,7 @@ void loop()
       setPWM(8,i*b);
       setPWM(9,i*b);
       delay(3);
-    }   
+    }
 }
 
 /*
@@ -174,13 +152,13 @@ void setPWM(int channel, uint16_t brightness)
   channel = (channel >= 5) ? channel += 1 : channel;
   Wire.beginTransmission(PWM_ADDR);
   Wire.write(LED0_ON_L+4*channel);
-Wire.write(0x00); //turn the LED on at 0
-Wire.write(0x00); //turn the LED on at 0
+  Wire.write(0x00); //turn the LED on at 0
+  Wire.write(0x00); //turn the LED on at 0
 
-//turn the LED off when it hits this value (out of 4095)
-Wire.write(brightness); //first four LSB
-Wire.write(brightness>>8); //last four MSB
-Wire.endTransmission();
+  //turn the LED off when it hits this value (out of 4095)
+  Wire.write(brightness); //first four LSB
+  Wire.write(brightness>>8); //last four MSB
+  Wire.endTransmission();
 }
 
 /*
@@ -189,12 +167,12 @@ Wire.endTransmission();
 void setConfiguration()
 {
   Wire.beginTransmission(PWM_ADDR);
-Wire.write(0x00); //enter Mode 1 Register
-Wire.write(0xa1); //enable ocsillator and auto-increment register and restart
-Wire.endTransmission();
-delayMicroseconds(500);//500ms delay required after reset
-Wire.beginTransmission(PWM_ADDR);
-Wire.write(0x01); //enter Mode 2 Register
-Wire.write(0x04); //set drive mode for external MOSFETS 
-Wire.endTransmission();
+  Wire.write(0x00); //enter Mode 1 Register
+  Wire.write(0xa1); //enable ocsillator and auto-increment register and restart
+  Wire.endTransmission();
+  delayMicroseconds(500);//500ms delay required after reset
+  Wire.beginTransmission(PWM_ADDR);
+  Wire.write(0x01); //enter Mode 2 Register
+  Wire.write(0x04); //set drive mode for external MOSFETS
+  Wire.endTransmission();
 }
