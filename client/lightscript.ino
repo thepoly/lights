@@ -140,12 +140,17 @@ void serialEvent(){
   k = thirdValue.toInt();
   l = fourthValue.toInt() * 0.75;
   whichWindow = firstValue.toInt();
+  int vals [3];
+  vals[0] = j;
+  vals[1] = k;
+  vals[2] = l;
+  setWindow(whichWindow, vals);
   Serial.println(whichWindow);
   Serial.flush();
 }
 
 void loop()
-{
+{/*
   r = j;
   g = k;
   b = l;
@@ -189,7 +194,7 @@ void loop()
       setPWM(8,i*b);
       setPWM(9,i*b);
       delay(3);
-    }
+    }*/
 }
 
 /*
