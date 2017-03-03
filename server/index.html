@@ -3,10 +3,11 @@
 
 	<title>Poly Lights</title>
   <link rel="stylesheet" type="text/css" href="hover.css">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
 	<style>
   .title{
-    background-color: #e74c3c;
     padding-top: 0;
+		color: #6C7A89;
 		padding-bottom: 10px;
     height:10%;
     margin:0;
@@ -17,35 +18,52 @@
     height: 40%;
     float: left;
   }
-	.lightBox{
-		background-color: #34495e;
-		margin: 1%;
-		width:18%;
-		height:30%;
-		float:left;
-	}
-	.btn {
-	  display:block;
-	  height: 60%;
-	  width: 60%;
-		padding:15px;
-		margin: 10px;
-		float: left;
-	  border-radius: 50%;
-	  border: 0px solid red;
-
+	.boxOne {
+			margin-left: 50px;
+	    width: 200px;
+	    height: 200px;
+	    background: #4183D7;
+	    position: relative;
+	    top: 40px;
+	    left: -35px;
 	}
 
+	.boxTwo {
+	    width: 200px;
+	    height: 200px;
+			background: #22A7F0;
+	    position: absolute;
+	    left: 200px;
+	    top: 0px;
+	}
+	.boxThree {
+			width: 200px;
+			height: 200px;
+			background: #59ABE3;
+			position: absolute;
+			left: 200px;
+			top: 0px;
+	}
+	.boxFour {
+			width: 200px;
+			height: 200px;
+			background: #81CFE0;
+			position: absolute;
+			left: 200px;
+			top: 0px;
+	}
 	body{
-    background-color: #ecf0f1;
+    background-color: #ececec;
     margin: 0;
     padding: 0;
-	  font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	  font-family: Open Sans;
+		font-style: italic;
+		font-variant: normal;
 
 	}
 	p{
 		font-size:60px;
-		color: white;
+		
 	}
 	</style>
   <script>
@@ -56,22 +74,16 @@
 </head>
 <body>
   <div class = "title">
-	   <center><p id = "demo">Select a Color: </p></center>
+	   <center><p id = "demo">Is this Open Sans</p></center>
   </div>
-	<div class = "lightBox">
-		<button class = "btn" name = "asdf">
-		<button class = "btn" name = "asdf">
-		<button class = "btn" name = "asdf">
-		<button class = "btn" name = "asdf">
+	<div class = "boxOne">P
+		<div class = "boxTwo">O
+			<div class = "boxThree">L
+				<div class = "boxFour">Y
+				</div>
+			</div>
+		</div>
+	</div>
 
-	</div>
-	<div class = "lightBox">
-	</div>
-	<div class = "lightBox">
-	</div>
-	<div class = "lightBox">
-	</div>
-	<div class = "lightBox">
-	</div>
 </body>
 </html>
