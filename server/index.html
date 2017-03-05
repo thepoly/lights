@@ -3,15 +3,12 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
-$('div').click(function(evt){
-    alert("asdf");
-});
-
 var quotes = [
     "Become enLIGHTened",
     "LIGHTen your mood",
     "LIGHT the world",
-    "LIGHTen up"
+    "ur dumb",
+		"ur dumb"
 ];
 var q = quotes.length - 1;
 var whichquote=Math.round(Math.random()*(q));
@@ -19,6 +16,11 @@ var whichquote=Math.round(Math.random()*(q));
 $('div').on('click', function(){
     alert($(this).attr("id"));
 });
+
+function wurd(val){
+	alert(val);
+};
+
 $(document).ready(function(){
 	$("body").hide();
 	$("#demo").html(quotes[whichquote]);
@@ -32,12 +34,11 @@ $(document).ready(function(){
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
 	<style>
   .title{
-    padding-top: 0;
-		color: black;
-		padding-bottom: 10px;
-    height:10%;
-    margin:0;
-		margin-bottom: 10px;
+		margin: 0 auto;
+		width:50%;
+
+		padding-top: 25%;
+		color: #ecf0f1;
   }
   .color{
     width: 20%;
@@ -47,6 +48,7 @@ $(document).ready(function(){
 	.lbox{
 		background-color: blue;
 		width: 800px;
+		height: 200px;
 		margin: 0 auto;
 		text-align: center;
 		font-size: 100px;
@@ -68,26 +70,39 @@ $(document).ready(function(){
 			background: #22A7F0;
 	    position: relative;
 	    left: 200px;
-	    top: 0px;
+	    top: -200px;
 	}
 	.boxThree {
 			width: 200px;
 			height: 200px;
 			background: #59ABE3;
 			position: relative;
-			left: 200px;
-			top: 0px;
+			left: 400px;
+			top: -400px;
 	}
 	.boxFour {
 			width: 200px;
 			height: 200px;
 			background: #81CFE0;
 			position: relative;
-			left: 200px;
-			top: 0px;
+			left: 600px;
+			top: -600px;
+	}
+	.left{
+		width:50%;
+		height: 100%;
+		background-color: #c0392b;
+		float:left;
+		border-radius: 50%;
+	}
+	.right{
+		width:50%;
+		height: 100%;
+		float: left;
+
 	}
 	body{
-    background-color: #e74c3c;
+    background-color: #ecf0f1;
     margin: 0;
     padding: 0;
 	  font-family: Open Sans;
@@ -96,8 +111,7 @@ $(document).ready(function(){
 
 	}
 	p{
-		font-size:60px;
-
+		font-size:100px;
 	}
 	</style>
   <script>
@@ -107,18 +121,22 @@ $(document).ready(function(){
   </script>
 </head>
 <body>
+	<div class = "left">
   <div class = "title">
 	   <center><p id = "demo"></p></center>
   </div>
-	<div class = "lbox">
-		<div class = "boxOne">P
-		</div>
-			<div class = "boxTwo">O
+</div>
+	<div class = "right">
+		<div class = "lbox">
+			<div onclick="wurd('P')" class = "boxOne">P
 			</div>
-				<div class = "boxThree">L
+				<div onclick="wurd('O')" class = "boxTwo">O
 				</div>
-					<div class = "boxFour">Y
+					<div onclick="wurd('L')" class = "boxThree">L
 					</div>
+						<div onclick="wurd('Y')" class = "boxFour">Y
+						</div>
+		</div>
 	</div>
 </body>
 </html>
