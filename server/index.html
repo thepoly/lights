@@ -1,13 +1,39 @@
 <html>
-<head>
 
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$('div').click(function(evt){
+    alert("asdf");
+});
+
+var quotes = [
+    "Become enLIGHTened",
+    "LIGHTen your mood",
+    "LIGHT the world",
+    "LIGHTen up"
+];
+var q = quotes.length - 1;
+var whichquote=Math.round(Math.random()*(q));
+
+$('div').on('click', function(){
+    alert($(this).attr("id"));
+});
+$(document).ready(function(){
+	$("body").hide();
+	$("#demo").html(quotes[whichquote]);
+	$("body").fadeIn(1000);
+
+});
+
+</script>
 	<title>Poly Lights</title>
   <link rel="stylesheet" type="text/css" href="hover.css">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
 	<style>
   .title{
     padding-top: 0;
-		color: #6C7A89;
+		color: black;
 		padding-bottom: 10px;
     height:10%;
     margin:0;
@@ -18,21 +44,29 @@
     height: 40%;
     float: left;
   }
+	.lbox{
+		background-color: blue;
+		width: 800px;
+		margin: 0 auto;
+		text-align: center;
+		font-size: 100px;
+		color:#ececec;
+	}
 	.boxOne {
-			margin-left: 50px;
+			margin-left: 0px;
 	    width: 200px;
 	    height: 200px;
 	    background: #4183D7;
 	    position: relative;
-	    top: 40px;
-	    left: -35px;
+	    top: 0px;
+	    left: 0px;
 	}
 
 	.boxTwo {
 	    width: 200px;
 	    height: 200px;
 			background: #22A7F0;
-	    position: absolute;
+	    position: relative;
 	    left: 200px;
 	    top: 0px;
 	}
@@ -40,7 +74,7 @@
 			width: 200px;
 			height: 200px;
 			background: #59ABE3;
-			position: absolute;
+			position: relative;
 			left: 200px;
 			top: 0px;
 	}
@@ -48,12 +82,12 @@
 			width: 200px;
 			height: 200px;
 			background: #81CFE0;
-			position: absolute;
+			position: relative;
 			left: 200px;
 			top: 0px;
 	}
 	body{
-    background-color: #ececec;
+    background-color: #e74c3c;
     margin: 0;
     padding: 0;
 	  font-family: Open Sans;
@@ -63,7 +97,7 @@
 	}
 	p{
 		font-size:60px;
-		
+
 	}
 	</style>
   <script>
@@ -74,16 +108,17 @@
 </head>
 <body>
   <div class = "title">
-	   <center><p id = "demo">Is this Open Sans</p></center>
+	   <center><p id = "demo"></p></center>
   </div>
-	<div class = "boxOne">P
-		<div class = "boxTwo">O
-			<div class = "boxThree">L
-				<div class = "boxFour">Y
-				</div>
-			</div>
+	<div class = "lbox">
+		<div class = "boxOne">P
 		</div>
+			<div class = "boxTwo">O
+			</div>
+				<div class = "boxThree">L
+				</div>
+					<div class = "boxFour">Y
+					</div>
 	</div>
-
 </body>
 </html>
