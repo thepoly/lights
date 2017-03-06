@@ -26,9 +26,19 @@ function changeColor(name,color,letter,dnc){
   $(name).css('background-color',color);
   $(name).append(letter);
   $(dnc).hide();
+  $.ajax({
+   type: "POST",
+     url: 'test.php',
+     data: 'word=' + color,
+     success: function(data) {
+       alert(data);
+
+     }
+   });
   setTimeout(function(){
     nah = false;
 }, 1000);
+
 }
 
 $(document).ready(function(){
@@ -39,15 +49,7 @@ $(document).ready(function(){
   $(".do-not-clear-2").hide();
   $(".do-not-clear-3").hide();
   $(".do-not-clear-4").hide();
-  $.ajax({
-   type: "POST",
-     url: 'index.html',
-     data: {'word=':"aWord"},
-     success: function(data) {
-       alert(data);
 
-     }
-   });
 });
 
 
