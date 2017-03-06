@@ -21,15 +21,25 @@ function wurd(val,name){
   }
 };
 
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+
 function changeColor(name,color,letter,dnc){
   nah = true;
   $(name).css('background-color',color);
   $(name).append(letter);
   $(dnc).hide();
+
   $.ajax({
    type: "POST",
      url: 'test.php',
-     data: 'word=' + color,
+     data: 'word='.concat(hexToRgb(color).r).concat(",").concat(hexToRgb(color).g).concat(",").concat(hexToRgb(color).b),
      success: function(data) {
        alert(data);
 
@@ -159,34 +169,34 @@ $(document).ready(function(){
 		<div class = "lbox">
 			<div onclick="wurd('.boxOne','.do-not-clear')" class = "boxOne">P
         <div class = "do-not-clear">
-        <div class = "fourSelect" onclick="changeColor('.boxOne','#3498db','P','.do-not-clear') "style = "background-color: #3498db;"></div>
-        <div class = "fourSelect" onclick="changeColor('.boxOne','#e74c3c','P','.do-not-clear'); changeColor('.boxTwo','#e74c3c','')" style = "background-color: #e74c3c;"></div>
-        <div class = "fourSelect" onclick="changeColor('.boxOne','#2ecc71','P','.do-not-clear')" style = "background-color: #2ecc71;"></div>
-        <div class = "fourSelect" onclick="changeColor('.boxOne','#ecf0f1','P','.do-not-clear')" style = "background-color: #ecf0f1;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#00FF00','P','.do-not-clear') "style = "background-color: #00FF00;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#FF0000','P','.do-not-clear'); changeColor('.boxTwo','#FF0000','')" style = "background-color: #FF0000;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#0000FF','P','.do-not-clear')" style = "background-color: #0000FF;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#FFFFFF','P','.do-not-clear')" style = "background-color: #FFFFFF;"></div>
       </div>
 			</div>
 				<div onclick="wurd('.boxTwo','.do-not-clear-2')" class = "boxTwo">O
           <div class = "do-not-clear-2">
-          <div class = "fourSelect" onclick="changeColor('.boxTwo','#3498db','O','.do-not-clear-2') "style = "background-color: #3498db;"></div>
-          <div class = "fourSelect" onclick="changeColor('.boxTwo','#e74c3c','O','.do-not-clear-2');changeColor('.boxOne','#e74c3c','')" style = "background-color: #e74c3c;"></div>
-          <div class = "fourSelect" onclick="changeColor('.boxTwo','#2ecc71','O','.do-not-clear-2')" style = "background-color: #2ecc71;"></div>
-          <div class = "fourSelect" onclick="changeColor('.boxTwo','#ecf0f1','O','.do-not-clear-2')" style = "background-color: #ecf0f1;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxTwo','#00FF00','O','.do-not-clear-2') "style = "background-color: #00FF00;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxTwo','#FF0000','O','.do-not-clear-2');changeColor('.boxOne','#FF0000','')" style = "background-color: #FF0000;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxTwo','#0000FF','O','.do-not-clear-2')" style = "background-color: #0000FF;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxTwo','#FFFFFF','O','.do-not-clear-2')" style = "background-color: #FFFFFF;"></div>
         </div>
 				</div>
 					<div onclick="wurd('.boxThree','.do-not-clear-3')" class = "boxThree">L
             <div class = "do-not-clear-3">
-            <div class = "fourSelect" onclick="changeColor('.boxThree','#3498db','L','.do-not-clear-3') "style = "background-color: #3498db;"></div>
-            <div class = "fourSelect" onclick="changeColor('.boxThree','#e74c3c','L','.do-not-clear-3')" style = "background-color: #e74c3c;"></div>
-            <div class = "fourSelect" onclick="changeColor('.boxThree','#2ecc71','L','.do-not-clear-3')" style = "background-color: #2ecc71;"></div>
-            <div class = "fourSelect" onclick="changeColor('.boxThree','#ecf0f1','L','.do-not-clear-3')" style = "background-color: #ecf0f1;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxThree','#00FF00','L','.do-not-clear-3') "style = "background-color: #00FF00;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxThree','#FF0000','L','.do-not-clear-3')" style = "background-color: #FF0000;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxThree','#0000FF','L','.do-not-clear-3')" style = "background-color: #0000FF;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxThree','#FFFFFF','L','.do-not-clear-3')" style = "background-color: #FFFFFF;"></div>
           </div>
 					</div>
 						<div onclick="wurd('.boxFour','.do-not-clear-4')" class = "boxFour">Y
               <div class = "do-not-clear-4">
-              <div class = "fourSelect" onclick="changeColor('.boxFour','#3498db','Y','.do-not-clear-4') "style = "background-color: #3498db;"></div>
-              <div class = "fourSelect" onclick="changeColor('.boxFour','#e74c3c','Y','.do-not-clear-4')" style = "background-color: #e74c3c;"></div>
-              <div class = "fourSelect" onclick="changeColor('.boxFour','#2ecc71','Y','.do-not-clear-4')" style = "background-color: #2ecc71;"></div>
-              <div class = "fourSelect" onclick="changeColor('.boxFour','#ecf0f1','Y','.do-not-clear-4')" style = "background-color: #ecf0f1;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxFour','#00FF00','Y','.do-not-clear-4') "style = "background-color: #00FF00;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxFour','#FF0000','Y','.do-not-clear-4')" style = "background-color: #FF0000;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxFour','#0000FF','Y','.do-not-clear-4')" style = "background-color: #0000FF;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxFour','#FFFFFF','Y','.do-not-clear-4')" style = "background-color: #FFFFFF;"></div>
             </div>
 						</div>
 		</div>
