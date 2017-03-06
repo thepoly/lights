@@ -79,7 +79,7 @@ $("#minipicker").spectrum({
        $.ajax({
 				type: "POST",
 			  	url: 'index.php',
-			  	data: {'colors':getRGB($('#minipicker').val()).join(',')},
+			  	data: {'colors':'getRGB($('#minipicker').val()).join(',')'},
 			  	success: function(data) {
 
 			  	}

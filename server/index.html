@@ -21,14 +21,11 @@ function wurd(val,name){
   }
 };
 
-function changeColor(name,color,letter){
+function changeColor(name,color,letter,dnc){
   nah = true;
   $(name).css('background-color',color);
   $(name).append(letter);
-  $(".do-not-clear").hide();
-  $(".do-not-clear-2").hide();
-  $(".do-not-clear-3").hide();
-  $(".do-not-clear-4").hide();
+  $(dnc).hide();
   setTimeout(function(){
     nah = false;
 }, 1000);
@@ -42,7 +39,17 @@ $(document).ready(function(){
   $(".do-not-clear-2").hide();
   $(".do-not-clear-3").hide();
   $(".do-not-clear-4").hide();
+  $.ajax({
+   type: "POST",
+     url: 'index.html',
+     data: {'word=':"aWord"},
+     success: function(data) {
+       alert(data);
+
+     }
+   });
 });
+
 
 </script>
 	<title>Poly Lights</title>
@@ -66,7 +73,7 @@ $(document).ready(function(){
     height:50%;
     position: relative;
     float: left;
-    
+
     background-color: black;
   }
 	.lbox{
@@ -150,34 +157,34 @@ $(document).ready(function(){
 		<div class = "lbox">
 			<div onclick="wurd('.boxOne','.do-not-clear')" class = "boxOne">P
         <div class = "do-not-clear">
-        <div class = "fourSelect" onclick="changeColor('.boxOne','#3498db','P') "style = "background-color: #3498db;"></div>
-        <div class = "fourSelect" onclick="changeColor('.boxOne','#e74c3c','P'); changeColor('.boxTwo','#e74c3c','')" style = "background-color: #e74c3c;"></div>
-        <div class = "fourSelect" onclick="changeColor('.boxOne','#2ecc71','P')" style = "background-color: #2ecc71;"></div>
-        <div class = "fourSelect" onclick="changeColor('.boxOne','#ecf0f1','P')" style = "background-color: #ecf0f1;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#3498db','P','.do-not-clear') "style = "background-color: #3498db;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#e74c3c','P','.do-not-clear'); changeColor('.boxTwo','#e74c3c','')" style = "background-color: #e74c3c;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#2ecc71','P','.do-not-clear')" style = "background-color: #2ecc71;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#ecf0f1','P','.do-not-clear')" style = "background-color: #ecf0f1;"></div>
       </div>
 			</div>
 				<div onclick="wurd('.boxTwo','.do-not-clear-2')" class = "boxTwo">O
           <div class = "do-not-clear-2">
-          <div class = "fourSelect" onclick="changeColor('.boxTwo','#3498db','O') "style = "background-color: #3498db;"></div>
-          <div class = "fourSelect" onclick="changeColor('.boxTwo','#e74c3c','O');changeColor('.boxOne','#e74c3c','')" style = "background-color: #e74c3c;"></div>
-          <div class = "fourSelect" onclick="changeColor('.boxTwo','#2ecc71','O')" style = "background-color: #2ecc71;"></div>
-          <div class = "fourSelect" onclick="changeColor('.boxTwo','#ecf0f1','O')" style = "background-color: #ecf0f1;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxTwo','#3498db','O','.do-not-clear-2') "style = "background-color: #3498db;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxTwo','#e74c3c','O','.do-not-clear-2');changeColor('.boxOne','#e74c3c','')" style = "background-color: #e74c3c;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxTwo','#2ecc71','O','.do-not-clear-2')" style = "background-color: #2ecc71;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxTwo','#ecf0f1','O','.do-not-clear-2')" style = "background-color: #ecf0f1;"></div>
         </div>
 				</div>
 					<div onclick="wurd('.boxThree','.do-not-clear-3')" class = "boxThree">L
             <div class = "do-not-clear-3">
-            <div class = "fourSelect" onclick="changeColor('.boxThree','#3498db','L') "style = "background-color: #3498db;"></div>
-            <div class = "fourSelect" onclick="changeColor('.boxThree','#e74c3c','L')" style = "background-color: #e74c3c;"></div>
-            <div class = "fourSelect" onclick="changeColor('.boxThree','#2ecc71','L')" style = "background-color: #2ecc71;"></div>
-            <div class = "fourSelect" onclick="changeColor('.boxThree','#ecf0f1','L')" style = "background-color: #ecf0f1;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxThree','#3498db','L','.do-not-clear-3') "style = "background-color: #3498db;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxThree','#e74c3c','L','.do-not-clear-3')" style = "background-color: #e74c3c;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxThree','#2ecc71','L','.do-not-clear-3')" style = "background-color: #2ecc71;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxThree','#ecf0f1','L','.do-not-clear-3')" style = "background-color: #ecf0f1;"></div>
           </div>
 					</div>
 						<div onclick="wurd('.boxFour','.do-not-clear-4')" class = "boxFour">Y
               <div class = "do-not-clear-4">
-              <div class = "fourSelect" onclick="changeColor('.boxFour','#3498db','Y') "style = "background-color: #3498db;"></div>
-              <div class = "fourSelect" onclick="changeColor('.boxFour','#e74c3c','Y')" style = "background-color: #e74c3c;"></div>
-              <div class = "fourSelect" onclick="changeColor('.boxFour','#2ecc71','Y')" style = "background-color: #2ecc71;"></div>
-              <div class = "fourSelect" onclick="changeColor('.boxFour','#ecf0f1','Y')" style = "background-color: #ecf0f1;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxFour','#3498db','Y','.do-not-clear-4') "style = "background-color: #3498db;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxFour','#e74c3c','Y','.do-not-clear-4')" style = "background-color: #e74c3c;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxFour','#2ecc71','Y','.do-not-clear-4')" style = "background-color: #2ecc71;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxFour','#ecf0f1','Y','.do-not-clear-4')" style = "background-color: #ecf0f1;"></div>
             </div>
 						</div>
 		</div>
