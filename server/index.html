@@ -4,28 +4,44 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 var quotes = [
-    "Become enLIGHTened",
-    "LIGHTen your mood",
-    "LIGHT the world",
-    "ur dumb",
-		"ur dumb"
+  "Poly Lights"
+
 ];
 var q = quotes.length - 1;
 var whichquote=Math.round(Math.random()*(q));
-
+var nah = false;;
 $('div').on('click', function(){
     alert($(this).attr("id"));
 });
 
-function wurd(val){
-	alert(val);
+function wurd(val,name){
+  if(!nah){
+    $(val).html($(val).children());
+    $(name).fadeIn(500);
+  }
 };
+
+function changeColor(name,color,letter){
+  nah = true;
+  $(name).css('background-color',color);
+  $(name).append(letter);
+  $(".do-not-clear").hide();
+  $(".do-not-clear-2").hide();
+  $(".do-not-clear-3").hide();
+  $(".do-not-clear-4").hide();
+  setTimeout(function(){
+    nah = false;
+}, 1000);
+}
 
 $(document).ready(function(){
 	$("body").hide();
 	$("#demo").html(quotes[whichquote]);
 	$("body").fadeIn(1000);
-
+  $(".do-not-clear").hide();
+  $(".do-not-clear-2").hide();
+  $(".do-not-clear-3").hide();
+  $(".do-not-clear-4").hide();
 });
 
 </script>
@@ -37,13 +53,21 @@ $(document).ready(function(){
 		margin: 0 auto;
 		width:50%;
 
-		padding-top: 25%;
-		color: #ecf0f1;
+		padding-top:0 ;
+		color: #2c3e50;
   }
   .color{
     width: 20%;
     height: 40%;
     float: left;
+  }
+  .fourSelect{
+    width:50%;
+    height:50%;
+    position: relative;
+    float: left;
+
+    background-color: black;
   }
 	.lbox{
 		background-color: blue;
@@ -52,7 +76,7 @@ $(document).ready(function(){
 		margin: 0 auto;
 		text-align: center;
 		font-size: 100px;
-		color:#ececec;
+		color:#2C3E50;
 	}
 	.boxOne {
 			margin-left: 0px;
@@ -103,40 +127,59 @@ $(document).ready(function(){
 	}
 	body{
     background-color: #ecf0f1;
+    background-image: url("canvas.png");
     margin: 0;
     padding: 0;
 	  font-family: Open Sans;
 		font-style: italic;
 		font-variant: normal;
-
+    color:#2C3E50;
 	}
 	p{
 		font-size:100px;
+    color:#2C3E50;
 	}
 	</style>
-  <script>
-  function myFunction() {
-    document.getElementById("demo").innerHTML = "Hello World";
-  }
-  </script>
 </head>
 <body>
-	<div class = "left">
+
   <div class = "title">
 	   <center><p id = "demo"></p></center>
   </div>
-</div>
-	<div class = "right">
+
 		<div class = "lbox">
-			<div onclick="wurd('P')" class = "boxOne">P
+			<div onclick="wurd('.boxOne','.do-not-clear')" class = "boxOne">P
+        <div class = "do-not-clear">
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#3498db','P') "style = "background-color: #3498db;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#e74c3c','P')" style = "background-color: #e74c3c;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#2ecc71','P')" style = "background-color: #2ecc71;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#ecf0f1','P')" style = "background-color: #ecf0f1;"></div>
+      </div>
 			</div>
-				<div onclick="wurd('O')" class = "boxTwo">O
+				<div onclick="wurd('.boxTwo','.do-not-clear-2')" class = "boxTwo">O
+          <div class = "do-not-clear-2">
+          <div class = "fourSelect" onclick="changeColor('.boxOne','#3498db','P') "style = "background-color: #3498db;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxOne','#e74c3c','P')" style = "background-color: #e74c3c;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxOne','#2ecc71','P')" style = "background-color: #2ecc71;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxOne','#ecf0f1','P')" style = "background-color: #ecf0f1;"></div>
+        </div>
 				</div>
-					<div onclick="wurd('L')" class = "boxThree">L
+					<div onclick="wurd('.boxThree','.do-not-clear-3')" class = "boxThree">L
+            <div class = "do-not-clear-3">
+            <div class = "fourSelect" onclick="changeColor('.boxOne','#3498db','P') "style = "background-color: #3498db;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxOne','#e74c3c','P')" style = "background-color: #e74c3c;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxOne','#2ecc71','P')" style = "background-color: #2ecc71;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxOne','#ecf0f1','P')" style = "background-color: #ecf0f1;"></div>
+          </div>
 					</div>
-						<div onclick="wurd('Y')" class = "boxFour">Y
+						<div onclick="wurd('.boxFour','.do-not-clear-4')" class = "boxFour">Y
+              <div class = "do-not-clear-4">
+              <div class = "fourSelect" onclick="changeColor('.boxOne','#3498db','P') "style = "background-color: #3498db;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxOne','#e74c3c','P')" style = "background-color: #e74c3c;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxOne','#2ecc71','P')" style = "background-color: #2ecc71;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxOne','#ecf0f1','P')" style = "background-color: #ecf0f1;"></div>
+            </div>
 						</div>
 		</div>
-	</div>
 </body>
 </html>
