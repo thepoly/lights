@@ -43,12 +43,12 @@ function changeColor(name,color,letter,dnc){
   $.ajax({
    type: "POST",
      url: 'test.php',
-     data: 'word='.concat(hexToRgb(color).r).concat(",").concat(hexToRgb(color).g).concat(",").concat(hexToRgb(color).b),
+     data: 'word='.concat(hexToRgb(color).r).concat(",").concat(hexToRgb(color).g).concat(",").concat(hexToRgb(color).b).concat(",").concat(letter),
      success: function(data) {
        alert(data);
-
      }
    });
+
   setTimeout(function(){
     nah = false;
 }, 1000);
