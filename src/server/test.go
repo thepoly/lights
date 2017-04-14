@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
   "encoding/json"
-
+  "io/ioutil"
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
@@ -11,6 +11,7 @@ import (
 )
 
 type Color struct {
+  Id            int
 	R             string
 	G             string
 	B             string
@@ -21,12 +22,18 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ColorHandle(w http.ResponseWriter, r *http.Request){
-  c := Color{
-    "255",
-    "255",
-    "255",
-  }
-  WriteJSON(w,c);
+  var colors []Color;
+
+  data, err := ioutil.ReadFile("LEDL.txt")
+	if err != nil {
+		panic("asdf")
+	}
+
+	if err := json.Unmarshal(data, &colors); err != nil {
+		panic(err)
+	}
+
+  WriteJSON(w,colors);
 }
 
 func WriteJSON(w http.ResponseWriter, data interface{}) error {
