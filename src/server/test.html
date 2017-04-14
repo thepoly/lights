@@ -1,0 +1,23 @@
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+function doThis(){
+  $.getJSON( "http://127.0.0.1:8080/color", function( data ) {
+    var items = [];
+    var json = data[1]["Id"];
+    alert(json);
+});
+}
+</script>
+	<title>Poly Lights</title>
+
+</head>
+<body>
+
+  <button onclick="doThis()" style="background-color:blue">
+  asdf
+</button>
+</body>
+</html>

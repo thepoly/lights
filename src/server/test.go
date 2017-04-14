@@ -18,7 +18,7 @@ type Color struct {
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "index.html")
+	http.ServeFile(w, r, "test.html")
 }
 
 func ColorHandle(w http.ResponseWriter, r *http.Request){
@@ -50,6 +50,7 @@ func WriteJSON(w http.ResponseWriter, data interface{}) error {
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", IndexHandler).Methods("GET")
+  r.HandleFunc("/color", ColorHandle).Methods("POST")
   r.HandleFunc("/color", ColorHandle).Methods("GET")
 
   //r.HandleFunc("/import", App.ImportHandler).Methods("GET")
