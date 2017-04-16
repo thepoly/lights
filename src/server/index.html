@@ -33,6 +33,13 @@ function hexToRgb(hex) {
         b: parseInt(result[3], 16)
     } : null;
 }
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
 
 function changeColor(name,color,letter,dnc){
   nah = true;
@@ -42,10 +49,10 @@ function changeColor(name,color,letter,dnc){
 
   $.ajax({
    type: "POST",
-     url: 'test.php',
+     url: '/submit',
      data: 'word='.concat(hexToRgb(color).r).concat(",").concat(hexToRgb(color).g).concat(",").concat(hexToRgb(color).b).concat(",").concat(letter),
      success: function(data) {
-       alert(data);
+       updateColors();
      }
    });
 
@@ -53,6 +60,17 @@ function changeColor(name,color,letter,dnc){
     nah = false;
 }, 1000);
 
+}
+
+function updateColors(){
+  $.getJSON( "http://127.0.0.1:8080/color", function( data ) {
+    var items = [];
+    $(".boxOne").css('background-color',rgbToHex(parseInt(data[0]["R"]),parseInt(data[0]["G"]),parseInt(data[0]["B"])));
+    $(".boxTwo").css('background-color',rgbToHex(parseInt(data[1]["R"]),parseInt(data[1]["G"]),parseInt(data[1]["B"])));
+    $(".boxThree").css('background-color',rgbToHex(parseInt(data[2]["R"]),parseInt(data[2]["G"]),parseInt(data[2]["B"])));
+    $(".boxFour").css('background-color',rgbToHex(parseInt(data[3]["R"]),parseInt(data[3]["G"]),parseInt(data[3]["B"])));
+
+  });
 }
 
 $(document).ready(function(){
@@ -63,6 +81,9 @@ $(document).ready(function(){
   $(".do-not-clear-2").hide();
   $(".do-not-clear-3").hide();
   $(".do-not-clear-4").hide();
+  updateColors();
+  setInterval(function(){updateColors()}, 7000);
+
 
 });
 
@@ -173,37 +194,36 @@ $(document).ready(function(){
 		<div class = "lbox">
 			<div onclick="wurd('.boxOne','.do-not-clear')" class = "boxOne">P
         <div class = "do-not-clear">
-        <div class = "fourSelect" onclick="changeColor('.boxOne','#00FF00','P','.do-not-clear') "style = "background-color: #00FF00;"></div>
-        <div class = "fourSelect" onclick="changeColor('.boxOne','#FF0000','P','.do-not-clear'); changeColor('.boxTwo','#FF0000','')" style = "background-color: #FF0000;"></div>
-        <div class = "fourSelect" onclick="changeColor('.boxOne','#0000FF','P','.do-not-clear')" style = "background-color: #0000FF;"></div>
-        <div class = "fourSelect" onclick="changeColor('.boxOne','#FFFFFF','P','.do-not-clear')" style = "background-color: #FFFFFF;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#00FF00','0','.do-not-clear') "style = "background-color: #00FF00;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#FF0000','0','.do-not-clear'); changeColor('.boxTwo','#FF0000','')" style = "background-color: #FF0000;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#0000FF','0','.do-not-clear')" style = "background-color: #0000FF;"></div>
+        <div class = "fourSelect" onclick="changeColor('.boxOne','#FFFFFF','0','.do-not-clear')" style = "background-color: #FFFFFF;"></div>
       </div>
 			</div>
 				<div onclick="wurd('.boxTwo','.do-not-clear-2')" class = "boxTwo">O
           <div class = "do-not-clear-2">
-          <div class = "fourSelect" onclick="changeColor('.boxTwo','#00FF00','O','.do-not-clear-2') "style = "background-color: #00FF00;"></div>
-          <div class = "fourSelect" onclick="changeColor('.boxTwo','#FF0000','O','.do-not-clear-2');changeColor('.boxOne','#FF0000','')" style = "background-color: #FF0000;"></div>
-          <div class = "fourSelect" onclick="changeColor('.boxTwo','#0000FF','O','.do-not-clear-2')" style = "background-color: #0000FF;"></div>
-          <div class = "fourSelect" onclick="changeColor('.boxTwo','#FFFFFF','O','.do-not-clear-2')" style = "background-color: #FFFFFF;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxTwo','#00FF00','1','.do-not-clear-2') "style = "background-color: #00FF00;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxTwo','#FF0000','1','.do-not-clear-2');changeColor('.box2ne','#FF0000','')" style = "background-color: #FF0000;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxTwo','#0000FF','1','.do-not-clear-2')" style = "background-color: #0000FF;"></div>
+          <div class = "fourSelect" onclick="changeColor('.boxTwo','#FFFFFF','1','.do-not-clear-2')" style = "background-color: #FFFFFF;"></div>
         </div>
 				</div>
 					<div onclick="wurd('.boxThree','.do-not-clear-3')" class = "boxThree">L
             <div class = "do-not-clear-3">
-            <div class = "fourSelect" onclick="changeColor('.boxThree','#00FF00','L','.do-not-clear-3') "style = "background-color: #00FF00;"></div>
-            <div class = "fourSelect" onclick="changeColor('.boxThree','#FF0000','L','.do-not-clear-3')" style = "background-color: #FF0000;"></div>
-            <div class = "fourSelect" onclick="changeColor('.boxThree','#0000FF','L','.do-not-clear-3')" style = "background-color: #0000FF;"></div>
-            <div class = "fourSelect" onclick="changeColor('.boxThree','#FFFFFF','L','.do-not-clear-3')" style = "background-color: #FFFFFF;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxThree','#00FF00','2','.do-not-clear-3') "style = "background-color: #00FF00;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxThree','#FF0000','2','.do-not-clear-3')" style = "background-color: #FF0000;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxThree','#0000FF','2','.do-not-clear-3')" style = "background-color: #0000FF;"></div>
+            <div class = "fourSelect" onclick="changeColor('.boxThree','#FFFFFF','2','.do-not-clear-3')" style = "background-color: #FFFFFF;"></div>
           </div>
 					</div>
 						<div onclick="wurd('.boxFour','.do-not-clear-4')" class = "boxFour">Y
               <div class = "do-not-clear-4">
-              <div class = "fourSelect" onclick="changeColor('.boxFour','#00FF00','Y','.do-not-clear-4') "style = "background-color: #00FF00;"></div>
-              <div class = "fourSelect" onclick="changeColor('.boxFour','#FF0000','Y','.do-not-clear-4')" style = "background-color: #FF0000;"></div>
-              <div class = "fourSelect" onclick="changeColor('.boxFour','#0000FF','Y','.do-not-clear-4')" style = "background-color: #0000FF;"></div>
-              <div class = "fourSelect" onclick="changeColor('.boxFour','#FFFFFF','Y','.do-not-clear-4')" style = "background-color: #FFFFFF;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxFour','#00FF00','3','.do-not-clear-4') "style = "background-color: #00FF00;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxFour','#FF0000','3','.do-not-clear-4')" style = "background-color: #FF0000;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxFour','#0000FF','3','.do-not-clear-4')" style = "background-color: #0000FF;"></div>
+              <div class = "fourSelect" onclick="changeColor('.boxFour','#FFFFFF','3','.do-not-clear-4')" style = "background-color: #FFFFFF;"></div>
             </div>
 						</div>
 		</div>
-    <center>*note, for now the color of the lights will not be updated independently, this functionality will be added soon, <br>as such the color of the lights will not always match what is displayed here</center>
 </body>
 </html>

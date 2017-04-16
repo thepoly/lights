@@ -1,30 +1,32 @@
 package main
 
 import (
+	"encoding/json"
+	"io/ioutil"
 	"net/http"
-  "encoding/json"
-  "io/ioutil"
+
+	"strings"
+	"strconv"
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
-
 )
 
 type Color struct {
-  Id            int
-	R             string
-	G             string
-	B             string
+	Id int
+	R  string
+	G  string
+	B  string
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "test.html")
+	http.ServeFile(w, r, "index.html")
 }
 
-func ColorHandle(w http.ResponseWriter, r *http.Request){
-  var colors []Color;
+func ColorHandle(w http.ResponseWriter, r *http.Request) {
+	var colors []Color
 
-  data, err := ioutil.ReadFile("LEDL.txt")
+	data, err := ioutil.ReadFile("LEDL.txt")
 	if err != nil {
 		panic("asdf")
 	}
@@ -33,7 +35,7 @@ func ColorHandle(w http.ResponseWriter, r *http.Request){
 		panic(err)
 	}
 
-  WriteJSON(w,colors);
+	WriteJSON(w, colors)
 }
 
 func WriteJSON(w http.ResponseWriter, data interface{}) error {
@@ -47,13 +49,39 @@ func WriteJSON(w http.ResponseWriter, data interface{}) error {
 	return nil
 }
 
+func ChangeHandler(w http.ResponseWriter, r *http.Request){
+	 r.ParseForm();
+	 var colors []Color
+
+	 data, err := ioutil.ReadFile("LEDL.txt")
+	 if err != nil {
+		 panic("asdf")
+	 }
+
+	 if err := json.Unmarshal(data, &colors); err != nil {
+		 panic(err)
+	 }
+
+	 id, err:= strconv.Atoi(strings.Split(r.Form["word"][0],",")[3]);
+	 colors[id] = Color{
+		 id,
+		 strings.Split(r.Form["word"][0],",")[0],
+		 strings.Split(r.Form["word"][0],",")[1],
+		 strings.Split(r.Form["word"][0],",")[2],
+	 }
+	 b, err := json.MarshalIndent(colors, "", " ")
+	 error := ioutil.WriteFile("LEDL.txt", b, 0644)
+	 _ = error
+}
+
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", IndexHandler).Methods("GET")
-  r.HandleFunc("/color", ColorHandle).Methods("POST")
-  r.HandleFunc("/color", ColorHandle).Methods("GET")
+	r.HandleFunc("/color", ColorHandle).Methods("POST")
+	r.HandleFunc("/color", ColorHandle).Methods("GET")
+	r.HandleFunc("/submit", ChangeHandler).Methods("POST")
 
-  //r.HandleFunc("/import", App.ImportHandler).Methods("GET")
+	//r.HandleFunc("/import", App.ImportHandler).Methods("GET")
 	// Serve requests
 	http.Handle("/", r)
 	if err := http.ListenAndServe(":8080", r); err != nil {
