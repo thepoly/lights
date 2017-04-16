@@ -74,7 +74,7 @@ function changeColor(name,color,letter,dnc){
 }
 
 function updateColors(){
-  $.getJSON( "http://127.0.0.1:8080/color", function( data ) {
+  $.getJSON( "poly.rpi.edu/lights/color", function( data ) {
     var items = [];
     $(".boxOne").css('background-color',rgbToHex(parseInt(data[0]["R"]),parseInt(data[0]["G"]),parseInt(data[0]["B"])));
     $(".boxTwo").css('background-color',rgbToHex(parseInt(data[1]["R"]),parseInt(data[1]["G"]),parseInt(data[1]["B"])));
