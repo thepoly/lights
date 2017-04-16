@@ -44,7 +44,18 @@ function rgbToHex(r, g, b) {
 function changeColor(name,color,letter,dnc){
   nah = true;
   $(name).css('background-color',color);
-  $(name).append(letter);
+  if(letter == 0){
+    $(name).append("P");
+  }
+  if(letter == 1){
+    $(name).append("O");
+  }
+  if(letter == 2){
+    $(name).append("L");
+  }
+  if(letter == 3){
+    $(name).append("Y");
+  }
   $(dnc).hide();
 
   $.ajax({
@@ -171,7 +182,6 @@ $(document).ready(function(){
 	}
 	body{
     background-color: #ecf0f1;
-    background-image: url("canvas.png");
     margin: 0;
     padding: 0;
 	  font-family: Open Sans;

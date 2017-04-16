@@ -23,6 +23,70 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "index.html")
 }
 
+func getP(w http.ResponseWriter, r *http.Request){
+	w.Header().Set("Content-Type", "text/http")
+	var colors []Color
+
+	data, err := ioutil.ReadFile("LEDL.txt")
+	if err != nil {
+		panic("asdf")
+	}
+
+	if err := json.Unmarshal(data, &colors); err != nil {
+		panic(err)
+	}
+	s := colors[0].R + "\n" + colors[0].G + "\n" + colors[0].B
+	w.Write([]byte(s));
+}
+
+func getO(w http.ResponseWriter, r *http.Request){
+	w.Header().Set("Content-Type", "text/http")
+	var colors []Color
+
+	data, err := ioutil.ReadFile("LEDL.txt")
+	if err != nil {
+		panic("asdf")
+	}
+
+	if err := json.Unmarshal(data, &colors); err != nil {
+		panic(err)
+	}
+	s := colors[1].R + "\n" + colors[1].G + "\n" + colors[1].B
+	w.Write([]byte(s));
+}
+
+func getL(w http.ResponseWriter, r *http.Request){
+	w.Header().Set("Content-Type", "text/http")
+	var colors []Color
+
+	data, err := ioutil.ReadFile("LEDL.txt")
+	if err != nil {
+		panic("asdf")
+	}
+
+	if err := json.Unmarshal(data, &colors); err != nil {
+		panic(err)
+	}
+	s := colors[2].R + "\n" + colors[2].G + "\n" + colors[2].B
+	w.Write([]byte(s));
+}
+
+func getY(w http.ResponseWriter, r *http.Request){
+	w.Header().Set("Content-Type", "text/http")
+	var colors []Color
+
+	data, err := ioutil.ReadFile("LEDL.txt")
+	if err != nil {
+		panic("asdf")
+	}
+
+	if err := json.Unmarshal(data, &colors); err != nil {
+		panic(err)
+	}
+	s := colors[3].R + "\n" + colors[3].G + "\n" + colors[3].B
+	w.Write([]byte(s));
+}
+
 func ColorHandle(w http.ResponseWriter, r *http.Request) {
 	var colors []Color
 
@@ -79,8 +143,14 @@ func main() {
 	r.HandleFunc("/", IndexHandler).Methods("GET")
 	r.HandleFunc("/color", ColorHandle).Methods("POST")
 	r.HandleFunc("/color", ColorHandle).Methods("GET")
+	r.HandleFunc("/color/", ColorHandle).Methods("POST")
+	r.HandleFunc("/color/", ColorHandle).Methods("GET")
 	r.HandleFunc("/submit", ChangeHandler).Methods("POST")
-
+	r.HandleFunc("/submit/", ChangeHandler).Methods("POST")
+	r.HandleFunc("/LEDL.txt", getL).Methods("GET")
+	r.HandleFunc("/LEDO.txt", getO).Methods("GET")
+	r.HandleFunc("/LEDP.txt", getP).Methods("GET")
+	r.HandleFunc("/LEDY.txt", getY).Methods("GET")
 	//r.HandleFunc("/import", App.ImportHandler).Methods("GET")
 	// Serve requests
 	http.Handle("/", r)
