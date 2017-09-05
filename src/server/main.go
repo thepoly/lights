@@ -27,7 +27,7 @@ func getP(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type", "text/http")
 	var colors []Color
 
-	data, err := ioutil.ReadFile("LEDL.txt")
+	data, err := ioutil.ReadFile("led/LEDL.txt")
 	if err != nil {
 		panic("asdf")
 	}
@@ -43,7 +43,7 @@ func getO(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type", "text/http")
 	var colors []Color
 
-	data, err := ioutil.ReadFile("LEDL.txt")
+	data, err := ioutil.ReadFile("led/LEDL.txt")
 	if err != nil {
 		panic("asdf")
 	}
@@ -59,7 +59,7 @@ func getL(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type", "text/http")
 	var colors []Color
 
-	data, err := ioutil.ReadFile("LEDL.txt")
+	data, err := ioutil.ReadFile("led/LEDL.txt")
 	if err != nil {
 		panic("asdf")
 	}
@@ -75,7 +75,7 @@ func getY(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type", "text/http")
 	var colors []Color
 
-	data, err := ioutil.ReadFile("LEDL.txt")
+	data, err := ioutil.ReadFile("led/LEDL.txt")
 	if err != nil {
 		panic("asdf")
 	}
@@ -90,7 +90,7 @@ func getY(w http.ResponseWriter, r *http.Request){
 func ColorHandle(w http.ResponseWriter, r *http.Request) {
 	var colors []Color
 
-	data, err := ioutil.ReadFile("LEDL.txt")
+	data, err := ioutil.ReadFile("led/LEDL.txt")
 	if err != nil {
 		panic("asdf")
 	}
@@ -117,7 +117,7 @@ func ChangeHandler(w http.ResponseWriter, r *http.Request){
 	 r.ParseForm();
 	 var colors []Color
 
-	 data, err := ioutil.ReadFile("LEDL.txt")
+	 data, err := ioutil.ReadFile("led/LEDL.txt")
 	 if err != nil {
 		 panic("asdf")
 	 }
@@ -134,7 +134,7 @@ func ChangeHandler(w http.ResponseWriter, r *http.Request){
 		 strings.Split(r.Form["word"][0],",")[2],
 	 }
 	 b, err := json.MarshalIndent(colors, "", " ")
-	 error := ioutil.WriteFile("LEDL.txt", b, 0644)
+	 error := ioutil.WriteFile("led/LEDL.txt", b, 0644)
 	 _ = error
 }
 
