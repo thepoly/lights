@@ -1,0 +1,15 @@
+
+.navbar-brand{
+  text-align: left;
+}
+
+.project-title{
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  font-size: 60px;
+}
+
+.main-content{
+  height: 100%;
+  background-color: white;
+}

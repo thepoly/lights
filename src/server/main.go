@@ -7,6 +7,7 @@ import (
 
 	"strings"
 	"strconv"
+	"fmt"
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
@@ -20,6 +21,15 @@ type Color struct {
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "index.html")
+}
+func StyleHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "styles.css")
+}
+
+func BowerHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("U did it");
+	fmt.Printf("%v", r);
 	http.ServeFile(w, r, "index.html")
 }
 
@@ -141,6 +151,8 @@ func ChangeHandler(w http.ResponseWriter, r *http.Request){
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", IndexHandler).Methods("GET")
+	r.HandleFunc("/styles.css", StyleHandler).Methods("GET")
+
 	r.HandleFunc("/color", ColorHandle).Methods("POST")
 	r.HandleFunc("/color", ColorHandle).Methods("GET")
 	r.HandleFunc("/color/", ColorHandle).Methods("POST")
@@ -154,6 +166,7 @@ func main() {
 	//r.HandleFunc("/import", App.ImportHandler).Methods("GET")
 	// Serve requests
 	http.Handle("/", r)
+
 	if err := http.ListenAndServe(":8080", r); err != nil {
 		log.Fatalf("Unable to ListenAndServe: %v", err)
 	}
