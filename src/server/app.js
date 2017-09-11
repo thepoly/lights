@@ -1,5 +1,5 @@
 function updateColors(){
-  $.get( "/LEDL.txt", function( data ) {
+  $.get( "LEDL.txt", function( data ) {
     data = data.split("\n");
     console.log(data);
     $(".sign-item").css("background-color", "rgb(" + data[0] + "," +data[1]+ ","+data[2] +")");
@@ -23,6 +23,7 @@ $(document).ready(function(){
   $(".color").click(function(){
     var newColor = ($("#" + this.id).css("background-color").substring(4));
     newColor = newColor.substring(0, newColor.length-1)
+    newColor = newColor.replace(/ /g,'')
     console.log(newColor);
     //$("#" + this.id);
     $.post( "submit?word=" + newColor + ",0", function( data ) {
