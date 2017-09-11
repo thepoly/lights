@@ -1,15 +1,92 @@
+body{
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
 
-.navbar-brand{
-  text-align: left;
+.main-header{
+  font-size: 45px;
+  font-weight: 30px;
 }
 
 .project-title{
-  font-family: 'Open Sans', sans-serif;
+  padding-top: 50px;
+  width: 100%;
   text-align: center;
-  font-size: 60px;
+}
+.title-logo{
+  height: 40px;
+  padding-left: 5px;
+  padding-top: 5px;
+}
+.sign-content{
+ width: auto;
+ margin: auto;
+ text-align: center;
 }
 
-.main-content{
+.color-picker{
+  display: none;
+  width: 100%;
+  height: 2rem;
+  background-color: red;
+  float: center;
+  border-radius: 5px;
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.sub-text{
+  width:auto;
+  height: auto;
+  float: left;
+  text-align: center;
+  margin-top: auto;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding-bottom: 50px;
+  position: absolute;
+  color: #333;
+}
+
+
+.link{
+  text-decoration: none;
+}
+
+.footer{
+  float: center;
+  bottom: 10%;
+  width: 100%;
+  height: 30px;
+  margin-top: 40px;
+
+}
+.sign-center{
+  width: 33%;
+  margin: auto;
+}
+.sign-item{
+  float: left;
+  width: 25%;
   height: 100%;
-  background-color: white;
+  vertical-align: center;
+  padding: auto;
+  margin: auto;
+  background-color: red;
+  font-size: 5vw;
+}
+.main-content{
+
+}
+.header{
+  width: 100%;
+  height: 50px;
+  margin: 0px;
+  padding-top: 0px;
+  top: 0;
+  left: 0;
+  position: fixed;
+  float: left;
+  background-color: #DA1E05;
 }

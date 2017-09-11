@@ -26,6 +26,12 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 func StyleHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "styles.css")
 }
+func JSHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "app.js")
+}
+func ImgHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "images/logo_m.png")
+}
 
 func BowerHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("U did it");
@@ -151,7 +157,9 @@ func ChangeHandler(w http.ResponseWriter, r *http.Request){
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", IndexHandler).Methods("GET")
+	r.HandleFunc("/images/logo_m.png",ImgHandler).Methods("GET");
 	r.HandleFunc("/styles.css", StyleHandler).Methods("GET")
+	r.HandleFunc("/app.js", JSHandler).Methods("GET")
 
 	r.HandleFunc("/color", ColorHandle).Methods("POST")
 	r.HandleFunc("/color", ColorHandle).Methods("GET")
