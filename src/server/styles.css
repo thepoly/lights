@@ -56,6 +56,12 @@ body{
 .link{
   text-decoration: none;
 }
+.side-container{
+   margin:auto;
+   float:center;
+   width:50%;
+   height:100%;
+}
 
 .footer{
   float: center;
