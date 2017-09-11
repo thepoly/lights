@@ -142,16 +142,19 @@ func ChangeHandler(w http.ResponseWriter, r *http.Request){
 		 panic(err)
 	 }
 
-	 id, err:= strconv.Atoi(strings.Split(r.Form["word"][0],",")[3]);
-	 colors[id] = Color{
-		 id,
-		 strings.Split(r.Form["word"][0],",")[0],
-		 strings.Split(r.Form["word"][0],",")[1],
-		 strings.Split(r.Form["word"][0],",")[2],
+	 id, _:= strconv.Atoi(strings.Split(r.Form["word"][0],",")[3]);
+	 for j := 0; j < len(colors); j ++ {
+
+		 colors[j] = Color{
+			 id,
+			 strings.Split(r.Form["word"][0],",")[0],
+			 strings.Split(r.Form["word"][0],",")[1],
+			 strings.Split(r.Form["word"][0],",")[2],
+		 }
+		 b, _ := json.MarshalIndent(colors, "", " ")
+		 error := ioutil.WriteFile("led/LEDL.txt", b, 0644)
+		 _ = error
 	 }
-	 b, err := json.MarshalIndent(colors, "", " ")
-	 error := ioutil.WriteFile("led/LEDL.txt", b, 0644)
-	 _ = error
 }
 
 func main() {

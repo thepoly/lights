@@ -24,11 +24,14 @@ body{
 }
 
 .color-picker{
-  display: none;
-  width: 100%;
-  height: 2rem;
+  width: 95%;
+  height: 0rem;
+  margin: auto;
   background-color: red;
-  float: center;
+  position: absolute;
+  bottom: 15%;
+  left: 0;
+  right: 0;
   border-radius: 5px;
   border-color: black;
   border-width: 1px;
