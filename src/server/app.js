@@ -11,13 +11,13 @@ $(document).ready(function(){
 
   updateColors();
   $(".color-picker").empty();
-  for (var i = 0; i < 360; i +=20){
-    $(".color-picker").append("<div class='color' id=" + i + " style='background-color:hsl("+i+",100%,50%);float:left; position:relative; width:" + $(".color-picker").width()/18 +"; height:100%;'></div>");
+  for (var i = 0; i < 360; i +=40){
+    $(".color-picker").append("<div class='color' id=" + i + " style='background-color:hsl("+i+",100%,50%);float:left; position:relative; width:" + $(".color-picker").width()/9 +"; height:100%;'></div>");
   }
 
   $(".color-picker").show();
   for (var i = 0; i < 1000; i ++){
-    $(".color-picker").animate({'height': '8rem'}, 100);
+    $(".color-picker").animate({'height': '6rem'}, 100);
   }
 
   $(".color").click(function(){
@@ -41,13 +41,13 @@ $( window ).resize(function() {
   updateColors();
   $(".color-picker").empty();
 
-  for (var i = 0; i < 360; i +=20){
-    $(".color-picker").append("<div class='color' id=" + i + " style='background-color:hsl("+i+",100%,50%);float:left; position:relative; width:" + $(".color-picker").width()/18 +"; height:100%;'></div>");
+  for (var i = 0; i < 360; i +=40){
+    $(".color-picker").append("<div class='color' id=" + i + " style='background-color:hsl("+i+",100%,50%);float:left; position:relative; width:" + $(".color-picker").width()/9 +"; height:100%;'></div>");
   }
 
   $(".color-picker").show();
   for (var i = 0; i < 1000; i ++){
-    $(".color-picker").animate({'height': '8rem'}, 100);
+    $(".color-picker").animate({'height': '6rem'}, 100);
   }
 
   $(".color").click(function(){
