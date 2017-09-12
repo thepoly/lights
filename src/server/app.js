@@ -1,14 +1,17 @@
 function updateColors(){
   $.get( "LEDL.txt", function( data ) {
     data = data.split("\n");
-    console.log(data);
     $(".sign-item").css("background-color", "rgb(" + data[0] + "," +data[1]+ ","+data[2] +")");
   });
 }
 
 function initDocument(){
   var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
-  if(mobile){
+  console.log($(window).width());
+  console.log($(window).height());
+
+  if($(window).width() < $(window).height()){
+    console.log("asdf");
     $(".side-container").removeClass("side-container");
   }
   $(".sign-item").height($(".sign-item").width());
@@ -21,7 +24,7 @@ function initDocument(){
 
   $(".color-picker").show();
   for (var i = 0; i < 1000; i ++){
-    $(".color-picker").animate({'height': '6rem'}, 100);
+    $(".color-picker").animate({'height': '8rem'}, 100);
   }
 
   $(".color").click(function(){
@@ -41,6 +44,7 @@ function initDocument(){
 
 $(document).ready(function(){
   initDocument();
+  var i = setInterval(updateColors, 1000);
 });
 
 $( window ).resize(function() {
