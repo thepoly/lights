@@ -18,6 +18,8 @@ type Color struct {
 	B  string
 }
 
+var changes int
+
 var color Color
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
@@ -44,6 +46,11 @@ func getInArduinoFormat(w http.ResponseWriter, r *http.Request){
 	w.Write([]byte(s));
 }
 
+func getStats(w http.ResponseWriter, r *http.Request){
+	w.Header().Set("Content-Type", "text/http")
+	WriteJSON(w, changes)
+}
+
 func ColorHandle(w http.ResponseWriter, r *http.Request) {
 	WriteJSON(w, color)
 }
@@ -60,6 +67,7 @@ func WriteJSON(w http.ResponseWriter, data interface{}) error {
 }
 
 func ChangeHandler(w http.ResponseWriter, r *http.Request){
+	 changes += 1;
 	 r.ParseForm();
 		 color = Color{
 			 0,
@@ -78,13 +86,14 @@ func main() {
 	color.R = "255";
 	color.G = "255";
 	color.B = "255";
+	changes = 0;
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", IndexHandler).Methods("GET")
 	r.HandleFunc("/images/logo_m.png",ImgHandler).Methods("GET");
 	r.HandleFunc("/styles.css", StyleHandler).Methods("GET")
 	r.HandleFunc("/app.js", JSHandler).Methods("GET")
-
+	r.HandleFunc("/stats", getStats).Methods("GET")
 	r.HandleFunc("/color", ColorHandle).Methods("POST")
 	r.HandleFunc("/color", ColorHandle).Methods("GET")
 	r.HandleFunc("/color/", ColorHandle).Methods("POST")
