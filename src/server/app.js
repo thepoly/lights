@@ -1,5 +1,5 @@
 function updateColors(){
-  $.get( "LEDL.txt", function( data ) {
+  $.get( "LEDP.txt", function( data ) {
     data = data.split("\n");
     $(".project-title").css("background-color", "rgb(" + data[0] + "," +data[1]+ ","+data[2] +")");
   });
