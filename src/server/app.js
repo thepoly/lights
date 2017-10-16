@@ -1,20 +1,12 @@
 function updateColors(){
   $.get( "LEDL.txt", function( data ) {
     data = data.split("\n");
-    $(".sign-item").css("background-color", "rgb(" + data[0] + "," +data[1]+ ","+data[2] +")");
+    $(".project-title").css("background-color", "rgb(" + data[0] + "," +data[1]+ ","+data[2] +")");
   });
 }
 
 function initDocument(){
   var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
-  console.log($(window).width());
-  console.log($(window).height());
-
-  if($(window).width() < $(window).height()){
-    console.log("asdf");
-    $(".side-container").removeClass("side-container");
-  }
-  $(".sign-item").height($(".sign-item").width());
 
   updateColors();
   $(".color-picker").empty();

@@ -1,5 +1,11 @@
 body{
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .main-header{
@@ -8,7 +14,12 @@ body{
 }
 
 .project-title{
-  padding-top: 50px;
+  margin-top: 75px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: 150px;
+  vertical-align: center;
+  line-height: 150px;
   width: 100%;
   text-align: center;
 }
