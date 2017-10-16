@@ -6,8 +6,6 @@ import (
 	"net/http"
 
 	"strings"
-	"strconv"
-	"fmt"
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
@@ -19,6 +17,8 @@ type Color struct {
 	G  string
 	B  string
 }
+
+var color Color
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "index.html")
@@ -34,93 +34,23 @@ func ImgHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func BowerHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("U did it");
-	fmt.Printf("%v", r);
 	http.ServeFile(w, r, "index.html")
 }
 
-func getP(w http.ResponseWriter, r *http.Request){
+func getInArduinoFormat(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type", "text/http")
-	var colors []Color
 
-	data, err := ioutil.ReadFile("led/LEDL.txt")
-	if err != nil {
-		panic("asdf")
-	}
-
-	if err := json.Unmarshal(data, &colors); err != nil {
-		panic(err)
-	}
-	s := colors[0].R + "\n" + colors[0].G + "\n" + colors[0].B
-	w.Write([]byte(s));
-}
-
-func getO(w http.ResponseWriter, r *http.Request){
-	w.Header().Set("Content-Type", "text/http")
-	var colors []Color
-
-	data, err := ioutil.ReadFile("led/LEDL.txt")
-	if err != nil {
-		panic("asdf")
-	}
-
-	if err := json.Unmarshal(data, &colors); err != nil {
-		panic(err)
-	}
-	s := colors[1].R + "\n" + colors[1].G + "\n" + colors[1].B
-	w.Write([]byte(s));
-}
-
-func getL(w http.ResponseWriter, r *http.Request){
-	w.Header().Set("Content-Type", "text/http")
-	var colors []Color
-
-	data, err := ioutil.ReadFile("led/LEDL.txt")
-	if err != nil {
-		panic("asdf")
-	}
-
-	if err := json.Unmarshal(data, &colors); err != nil {
-		panic(err)
-	}
-	s := colors[2].R + "\n" + colors[2].G + "\n" + colors[2].B
-	w.Write([]byte(s));
-}
-
-func getY(w http.ResponseWriter, r *http.Request){
-	w.Header().Set("Content-Type", "text/http")
-	var colors []Color
-
-	data, err := ioutil.ReadFile("led/LEDL.txt")
-	if err != nil {
-		panic("asdf")
-	}
-
-	if err := json.Unmarshal(data, &colors); err != nil {
-		panic(err)
-	}
-	s := colors[3].R + "\n" + colors[3].G + "\n" + colors[3].B
+	s := color.R + "\n" + color.G + "\n" + color.B
 	w.Write([]byte(s));
 }
 
 func ColorHandle(w http.ResponseWriter, r *http.Request) {
-	var colors []Color
-
-	data, err := ioutil.ReadFile("led/LEDL.txt")
-	if err != nil {
-		panic("asdf")
-	}
-
-	if err := json.Unmarshal(data, &colors); err != nil {
-		panic(err)
-	}
-
-	WriteJSON(w, colors)
+	WriteJSON(w, color)
 }
 
 func WriteJSON(w http.ResponseWriter, data interface{}) error {
 	w.Header().Set("Content-Type", "application/json")
-	b, err := json.MarshalIndent(data, "", " ")
+	b, err := json.MarshalIndent(	data, "", " ")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return err
@@ -131,33 +61,24 @@ func WriteJSON(w http.ResponseWriter, data interface{}) error {
 
 func ChangeHandler(w http.ResponseWriter, r *http.Request){
 	 r.ParseForm();
-	 var colors []Color
-
-	 data, err := ioutil.ReadFile("led/LEDL.txt")
-	 if err != nil {
-		 panic("asdf")
-	 }
-
-	 if err := json.Unmarshal(data, &colors); err != nil {
-		 panic(err)
-	 }
-
-	 id, _:= strconv.Atoi(strings.Split(r.Form["word"][0],",")[3]);
-	 for j := 0; j < len(colors); j ++ {
-
-		 colors[j] = Color{
-			 id,
+		 color = Color{
+			 0,
 			 strings.Split(r.Form["word"][0],",")[0],
 			 strings.Split(r.Form["word"][0],",")[1],
 			 strings.Split(r.Form["word"][0],",")[2],
 		 }
-		 b, _ := json.MarshalIndent(colors, "", " ")
+		 b, _ := json.MarshalIndent(color, "", " ")
 		 error := ioutil.WriteFile("led/LEDL.txt", b, 0644)
 		 _ = error
-	 }
+
 }
 
 func main() {
+	color.Id = 0;
+	color.R = "255";
+	color.G = "255";
+	color.B = "255";
+
 	r := mux.NewRouter()
 	r.HandleFunc("/", IndexHandler).Methods("GET")
 	r.HandleFunc("/images/logo_m.png",ImgHandler).Methods("GET");
@@ -170,10 +91,9 @@ func main() {
 	r.HandleFunc("/color/", ColorHandle).Methods("GET")
 	r.HandleFunc("/submit", ChangeHandler).Methods("POST")
 	r.HandleFunc("/submit/", ChangeHandler).Methods("POST")
-	r.HandleFunc("/LEDL.txt", getL).Methods("GET")
-	r.HandleFunc("/LEDO.txt", getO).Methods("GET")
-	r.HandleFunc("/LEDP.txt", getP).Methods("GET")
-	r.HandleFunc("/LEDY.txt", getY).Methods("GET")
+	r.HandleFunc("/LEDP.txt", getInArduinoFormat).Methods("GET")
+	r.HandleFunc("/LEDL.txt", getInArduinoFormat).Methods("GET")
+
 	//r.HandleFunc("/import", App.ImportHandler).Methods("GET")
 	// Serve requests
 	http.Handle("/", r)
