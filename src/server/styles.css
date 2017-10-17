@@ -6,11 +6,27 @@ body{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
 }
 
 .main-header{
-  font-size: 30px;
-  font-weight: 30px;
+  font-size: 50px;
+  font-weight: 10px;
+  z-index: 200;
+}
+.picker{
+  width:100%;
+  height:100%;
+  background-color:white;
+  z-index: 0;
+  float: none;
+  position: fixed;
+  top:0;
+  bottom: 0;
+  left:0;
+  -webkit-transition: 0.25s;
+  transition: 0.5s;
+
 }
 
 .project-title{
@@ -23,32 +39,14 @@ body{
   width: auto;
   text-align: center;
   border-radius: 20px;
+  z-index: 2;
+  background-color: transparent;
 }
 
 .title-logo{
   height: 40px;
   padding-left: 5px;
   padding-top: 5px;
-}
-.sign-content{
- width: auto;
- margin: auto;
- text-align: center;
-}
-
-.color-picker{
-  width: 95%;
-  height: 0rem;
-  margin: auto;
-  background-color: red;
-  position: absolute;
-  bottom: 20%;
-  left: 0;
-  right: 0;
-  border-radius: 5px;
-  border-color: black;
-  border-width: 1px;
-  border-style: solid;
 }
 
 .sub-text{
@@ -65,15 +63,28 @@ body{
   color: #333;
 }
 
-
 .link{
   text-decoration: none;
 }
+.color_field{
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom-color: #000;
+  width: 180%;
+  height: 100px;
+  color: #000;
+  font-size: 4em;
+  outline: none;
+  text-align: center;
+  font-family: Josefin Sans, sans-serif;
+  margin-left: -40%;
+}
 .side-container{
    margin:auto;
+   z-index: 2;
    float:center;
    width:50%;
-   height:100%;
+   height:auto;
 }
 
 .footer{
@@ -84,24 +95,9 @@ body{
   margin-top: 40px;
 
 }
-.sign-center{
-  width: 75%;
-  margin: auto;
-}
-.sign-item{
-  float: left;
-  width: 25%;
-  height: 100%;
-  vertical-align: center;
-  padding: auto;
-  margin: auto;
-  background-color: red;
-  font-size: 5vw;
-}
-.main-content{
 
-}
 .header{
+  z-index: 1;
   width: 100%;
   height: 50px;
   margin: 0px;

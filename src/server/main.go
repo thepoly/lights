@@ -34,6 +34,10 @@ func JSHandler(w http.ResponseWriter, r *http.Request) {
 func ImgHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "images/logo_m.png")
 }
+func ImgHandlerShirl(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "images/important.png")
+}
+
 
 func BowerHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "index.html")
@@ -91,6 +95,8 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", IndexHandler).Methods("GET")
 	r.HandleFunc("/images/logo_m.png",ImgHandler).Methods("GET");
+	r.HandleFunc("/images/important.png",ImgHandlerShirl).Methods("GET");
+
 	r.HandleFunc("/styles.css", StyleHandler).Methods("GET")
 	r.HandleFunc("/app.js", JSHandler).Methods("GET")
 	r.HandleFunc("/stats", getStats).Methods("GET")
