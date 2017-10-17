@@ -1,3 +1,11 @@
+var selectButton = {
+  state: 0,
+  switchToColorPicker: function(){
+
+  },
+
+}
+
 function updateColors(){
   $.get( "LEDP.txt", function( data ) {
     data = data.split("\n");
