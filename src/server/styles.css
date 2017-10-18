@@ -9,24 +9,16 @@ body{
 
 }
 
+.bg{
+  background-color: white;
+  -webkit-transition: background-color 100ms linear;
+  -ms-transition: background-color 100ms linear;
+  transition: background-color 100ms linear;
+}
 .main-header{
   font-size: 50px;
   font-weight: 10px;
   z-index: 200;
-}
-.picker{
-  width:100%;
-  height:100%;
-  background-color:white;
-  z-index: 0;
-  float: none;
-  position: fixed;
-  top:0;
-  bottom: 0;
-  left:0;
-  -webkit-transition: 0.25s;
-  transition: 0.5s;
-
 }
 
 .project-title{
@@ -40,6 +32,8 @@ body{
   text-align: center;
   border-radius: 20px;
   z-index: 2;
+}
+div{
   background-color: transparent;
 }
 
@@ -63,22 +57,10 @@ body{
   color: #333;
 }
 
-.link{
+a{
   text-decoration: none;
 }
-.color_field{
-  background-color: transparent;
-  border-color: transparent;
-  border-bottom-color: #000;
-  width: 180%;
-  height: 100px;
-  color: #000;
-  font-size: 4em;
-  outline: none;
-  text-align: center;
-  font-family: Josefin Sans, sans-serif;
-  margin-left: -40%;
-}
+
 .side-container{
    margin:auto;
    z-index: 2;
@@ -93,7 +75,6 @@ body{
   width: 100%;
   height: 30px;
   margin-top: 40px;
-
 }
 
 .header{
@@ -104,7 +85,7 @@ body{
   padding-top: 0px;
   top: 0;
   left: 0;
-  position: fixed;
+  position: absolute;;
   float: left;
   background-color: #DA1E05;
 }
