@@ -52,6 +52,7 @@ Vue.component('app-body', {
 
   <div>
     <div class="header"><img class="title-logo" src="images/logo_m.png"/></div>
+    <div class ="project-title"><p class="main-header">PolyLights</p></div>
     <div class = "bg" style="float:none; position:absolute; top:0;right:0;width:100%;height:100%;"></div>
     <div style="margin: 0 auto; width:75%;top:50px;position:relative;"><color-picker/></div>
     <div class="sub-text">Change the color of <a class="link" href="https://poly.rpi.edu">The Rensselaer Polytechnic's</a> Lights in the Rensselaer Student Union.
