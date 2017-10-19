@@ -6,6 +6,7 @@ body{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  color:black;
 
 }
 
@@ -68,7 +69,7 @@ div{
   left: 0;
   padding-bottom: 50px;
   position: absolute;
-  color: #333;
+  color: black;
 }
 
 a{
@@ -85,7 +86,6 @@ a{
 
 .footer{
   float: center;
-  bottom: 10%;
   width: 100%;
   height: 30px;
   margin-top: 40px;
@@ -101,5 +101,8 @@ a{
   left: 0;
   position: absolute;;
   float: left;
-  background-color: #DA1E05;
+  background-color: #transparent;
+  -webkit-transition: background-color 500ms linear;
+  -ms-transition: background-color 500ms linear;
+  transition: background-color 500ms linear;
 }
