@@ -1,8 +1,8 @@
 function populatePicker(){
   $(".cpicker").empty();
 
-  for (var i = 0; i < 360; i +=90){
-    $(".cpicker").append("<div class='color' id=" + i + " style='background-color:hsl("+i+",100%,50%);float:right; position:relative; width:" + ($(".cpicker").width())/4 +"; height:100%;'></div>");
+  for (var i = 0; i < 360; i +=40){
+    $(".cpicker").append("<div class='color' id=" + i + " style='background-color:hsl("+i+",100%,50%);display: table-cell;float:inherit;'></div>");
   }
 }
 
@@ -16,7 +16,7 @@ function updatePageColor(){
 var colorPicker = Vue.component('color-picker', {
   template: `
     <div>
-      <div v-on:click='updateColor' class="cpicker" style="padding-left:0;height:25%;width:100%;border-radius:5px; border-color:black; border-style: solid;float:left;"></div>
+      <div v-on:click='updateColor' class="cpicker" style="display: table;top: -20px;table-layout:fixed;position:relative;padding-left:0;height:200px;width:100%;border-radius:5px; border-color:black; border-style: solid;"></div>
     </div>`
     ,
   methods:{

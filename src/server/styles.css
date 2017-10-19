@@ -27,7 +27,6 @@ body{
   margin-top: 75px;
   padding-top: 0px;
   padding-bottom: 0px;
-  height: 150px;
   vertical-align: center;
   line-height: 150px;
   width: auto;
@@ -61,14 +60,12 @@ div{
 .sub-text{
   width:auto;
   height: auto;
-  float: left;
+  float: center;
   text-align: center;
   margin-top: auto;
-  bottom: 0;
-  right: 0;
-  left: 0;
   padding-bottom: 50px;
-  position: absolute;
+  top: 200px;
+  position: relative;
   color: black;
 }
 
