@@ -66,11 +66,11 @@ Vue.component('app-body', {
     <br><br><br>
     <div class="apiHolder" style="display:none;">
     <div class="api"><div class="post">POST</div> https://poly.rpi.edu/lights/submit/R=0&G=255&B=0</div>
-    <div class="api"><div class="get">GET</div> https://poly.rpi.edu/lights/color/</div>
-    <div class="api"><div class="get">GET</div> https://poly.rpi.edu/lights/stats/</div>
+    <div class="api"><div class="get">GET</div> https://poly.rpi.edu/lights/color</div>
+    <div class="api"><div class="get">GET</div> https://poly.rpi.edu/lights/stats</div>
     </div>
     <div class="sub-text">Change the color of <a class="link" href="https://poly.rpi.edu">The Rensselaer Polytechnic's</a> Lights in the Rensselaer Student Union.<br><br>
-    View the <a style="font-size20px;" class="link" href="#" onclick="$('.apiHolder').toggle();">API</a>
+    View the <a style="font-size20px;" class="link" href="#" onclick="$('.apiHolder').toggle();">API</a>, <a style="font-size20px;" class="link" href="https://github.com/thepoly/lights">Github</a>
     </div>
 `
 })
