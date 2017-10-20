@@ -48,7 +48,6 @@ var colorPicker = Vue.component('color-picker', {
 })
 
 $( window ).resize(function() {
-  console.log("asdf");
   populatePicker();
 });
 
