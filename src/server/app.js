@@ -28,12 +28,17 @@ var colorPicker = Vue.component('color-picker', {
     },
     updateColor: function(e){
       var newColor = ($(e.target).css("background-color").substring(4));
-      newColor = newColor.substring(0, newColor.length-1)
-      newColor = newColor.replace(/ /g,'')
+      newColor = newColor.substring(0, newColor.length-1);
+      newColor = newColor.replace(/ /g,'');
       var comp = this;
-      $.post( "submit?color=" + newColor + ",0", function( data ) {
-        comp.updateBg();
-      });
+      var res = newColor.split(",");
+      var pkg = {
+        R: res[0],
+        G: res[1],
+        B: res[2]
+      }
+      $.post("submit",pkg,function(data){});
+
     }
   },
   mounted(){
