@@ -4,8 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
-
-	"strings"
+	"strconv"
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
@@ -18,7 +17,11 @@ type Color struct {
 	B  string
 }
 
-var changes int
+type Stats struct {
+	Changes int
+}
+
+var statistics Stats
 
 var color Color
 
@@ -34,21 +37,25 @@ func JSHandler(w http.ResponseWriter, r *http.Request) {
 func ImgHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "images/logo_m.png")
 }
+func ImgHandlerShirl(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "images/important.png")
+}
 
 func BowerHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "index.html")
 }
 
-func getInArduinoFormat(w http.ResponseWriter, r *http.Request){
+func getInArduinoFormat(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/http")
 
 	s := color.R + "\n" + color.G + "\n" + color.B
-	w.Write([]byte(s));
+	w.Write([]byte(s))
 }
 
-func getStats(w http.ResponseWriter, r *http.Request){
+func getStats(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/http")
-	WriteJSON(w, changes)
+
+	WriteJSON(w, statistics)
 }
 
 func ColorHandle(w http.ResponseWriter, r *http.Request) {
@@ -57,7 +64,7 @@ func ColorHandle(w http.ResponseWriter, r *http.Request) {
 
 func WriteJSON(w http.ResponseWriter, data interface{}) error {
 	w.Header().Set("Content-Type", "application/json")
-	b, err := json.MarshalIndent(	data, "", " ")
+	b, err := json.MarshalIndent(data, "", " ")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return err
@@ -66,31 +73,54 @@ func WriteJSON(w http.ResponseWriter, data interface{}) error {
 	return nil
 }
 
-func ChangeHandler(w http.ResponseWriter, r *http.Request){
-	 changes += 1;
-	 r.ParseForm();
-		 color = Color{
-			 0,
-			 strings.Split(r.Form["word"][0],",")[0],
-			 strings.Split(r.Form["word"][0],",")[1],
-			 strings.Split(r.Form["word"][0],",")[2],
-		 }
-		 b, _ := json.MarshalIndent(color, "", " ")
-		 error := ioutil.WriteFile("led/LEDL.txt", b, 0644)
-		 _ = error
+func ChangeHandler(w http.ResponseWriter, r *http.Request) {
+	statistics.Changes += 1
+	r.ParseForm()
+	if(len(r.Form) != 3){
+		http.Error(w, "invalid args", http.StatusInternalServerError)
+		return
+	}
+	color = Color{
+		0,
+		r.Form["R"][0],
+		r.Form["G"][0],
+		r.Form["B"][0],
+	}
+	_, err := strconv.Atoi(color.R)
+	_, err2 := strconv.Atoi(color.G)
+	_, err3 := strconv.Atoi(color.B)
+
+	if err != nil {
+		http.Error(w, "invalid args", http.StatusInternalServerError)
+		return
+	}
+	if err2 != nil {
+		http.Error(w, "invalid args", http.StatusInternalServerError)
+		return
+	}
+	if err3 != nil {
+		http.Error(w, "invalid args", http.StatusInternalServerError)
+		return
+	}
+
+	b, _ := json.MarshalIndent(color, "", " ")
+	error := ioutil.WriteFile("led/LEDL.txt", b, 0644)
+	_ = error
 
 }
 
 func main() {
-	color.Id = 0;
-	color.R = "255";
-	color.G = "255";
-	color.B = "255";
-	changes = 0;
+	color.Id = 0
+	color.R = "255"
+	color.G = "255"
+	color.B = "255"
+	statistics.Changes = 0
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", IndexHandler).Methods("GET")
-	r.HandleFunc("/images/logo_m.png",ImgHandler).Methods("GET");
+	r.HandleFunc("/images/logo_m.png", ImgHandler).Methods("GET")
+	r.HandleFunc("/images/important.png", ImgHandlerShirl).Methods("GET")
+
 	r.HandleFunc("/styles.css", StyleHandler).Methods("GET")
 	r.HandleFunc("/app.js", JSHandler).Methods("GET")
 	r.HandleFunc("/stats", getStats).Methods("GET")
