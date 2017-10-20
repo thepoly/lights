@@ -18,7 +18,11 @@ type Color struct {
 	B  string
 }
 
-var changes int
+type Stats struct{
+	Changes int
+}
+
+var statistics Stats
 
 var color Color
 
@@ -52,7 +56,8 @@ func getInArduinoFormat(w http.ResponseWriter, r *http.Request){
 
 func getStats(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type", "text/http")
-	WriteJSON(w, changes)
+
+	WriteJSON(w, statistics)
 }
 
 func ColorHandle(w http.ResponseWriter, r *http.Request) {
@@ -71,13 +76,13 @@ func WriteJSON(w http.ResponseWriter, data interface{}) error {
 }
 
 func ChangeHandler(w http.ResponseWriter, r *http.Request){
-	 changes += 1;
+	 statistics.Changes += 1;
 	 r.ParseForm();
 		 color = Color{
 			 0,
-			 strings.Split(r.Form["word"][0],",")[0],
-			 strings.Split(r.Form["word"][0],",")[1],
-			 strings.Split(r.Form["word"][0],",")[2],
+			 strings.Split(r.Form["color"][0],",")[0],
+			 strings.Split(r.Form["color"][0],",")[1],
+			 strings.Split(r.Form["color"][0],",")[2],
 		 }
 		 b, _ := json.MarshalIndent(color, "", " ")
 		 error := ioutil.WriteFile("led/LEDL.txt", b, 0644)
@@ -90,7 +95,7 @@ func main() {
 	color.R = "255";
 	color.G = "255";
 	color.B = "255";
-	changes = 0;
+	statistics.Changes = 0;
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", IndexHandler).Methods("GET")

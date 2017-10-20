@@ -31,7 +31,7 @@ var colorPicker = Vue.component('color-picker', {
       newColor = newColor.substring(0, newColor.length-1)
       newColor = newColor.replace(/ /g,'')
       var comp = this;
-      $.post( "submit?word=" + newColor + ",0", function( data ) {
+      $.post( "submit?color=" + newColor + ",0", function( data ) {
         comp.updateBg();
       });
     }
