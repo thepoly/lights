@@ -63,7 +63,14 @@ Vue.component('app-body', {
     <div class="header"><img class="title-logo" src="images/logo_m.png"/></div>
     <div class ="project-title"><p class="main-header">PolyLights</p></div>
     <div style="margin: 0 auto; width:75%;top:50px;position:relative;"><color-picker/></div>
-    <div class="sub-text">Change the color of <a class="link" href="https://poly.rpi.edu">The Rensselaer Polytechnic's</a> Lights in the Rensselaer Student Union.
+    <br><br><br>
+    <div class="apiHolder" style="display:none;">
+    <div class="api"><div class="post">POST</div> https://poly.rpi.edu/lights/submit/R=0&G=255&B=0</div>
+    <div class="api"><div class="get">GET</div> https://poly.rpi.edu/lights/color/</div>
+    <div class="api"><div class="get">GET</div> https://poly.rpi.edu/lights/stats/</div>
+    </div>
+    <div class="sub-text">Change the color of <a class="link" href="https://poly.rpi.edu">The Rensselaer Polytechnic's</a> Lights in the Rensselaer Student Union.<br><br>
+    View the <a style="font-size20px;" class="link" href="#" onclick="$('.apiHolder').toggle();">API</a>
     </div>
 `
 })

@@ -56,6 +56,35 @@ div{
   padding-left: 5px;
   padding-top: 5px;
 }
+.api{
+  margin: 0 auto;
+  width: 400px;
+  text-align: center;
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  margin-top: 10px;
+}
+
+.post{
+  background-color: #3498db;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.get{
+  background-color: #2ecc71;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+
+
+}
+
 
 .sub-text{
   width:auto;
@@ -64,7 +93,7 @@ div{
   text-align: center;
   margin-top: auto;
   padding-bottom: 50px;
-  top: 200px;
+  top: 100px;
   position: relative;
   color: black;
 }
