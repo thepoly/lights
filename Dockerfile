@@ -10,7 +10,7 @@ RUN cd $GOPATH/src/server/
 
 RUN go get
 
-EXPOSE 8080
+EXPOSE 80
 
 RUN go build -o lights
 
