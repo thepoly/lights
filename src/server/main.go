@@ -132,11 +132,11 @@ func main() {
 	r.HandleFunc("/submit/", ChangeHandler).Methods("POST")
 	r.HandleFunc("/LEDP.txt", getInArduinoFormat).Methods("GET")
 	r.HandleFunc("/LEDL.txt", getInArduinoFormat).Methods("GET")
+	r.PathPrefix("/bower_components/").Handler(http.FileServer(http.Dir("./")))
 
 	//r.HandleFunc("/import", App.ImportHandler).Methods("GET")
 	// Serve requests
 	http.Handle("/", r)
-
 	if err := http.ListenAndServe(":8080", r); err != nil {
 		log.Fatalf("Unable to ListenAndServe: %v", err)
 	}
